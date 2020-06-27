@@ -1,9 +1,28 @@
 // See: https://sass-lang.com/
 
-body {
-  background-color: #EEE;
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+$nanum-gothic: 'Nanum Gothic', serif;
 
-  h1 {
-    color: #244751;
-  }
+$font-stack: Helvetica, sans-serif;
+$primary-color:  #EEE;
+
+
+body {
+  display: flex
+  flex-direction: column  
+
+ 
+}
+
+h1 {
+  color: #42524a;
+  font: $nanum-gothic;
+}
+nav {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  background: center center no-repeat;
+  border: 1px solid;
+  border-radius: 3px;
 }
