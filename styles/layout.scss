@@ -5,24 +5,55 @@ $nanum-gothic: 'Nanum Gothic', serif;
 
 $font-stack: Helvetica, sans-serif;
 $primary-color:  #EEE;
-
+$secondary-color: #42524a;
 
 body {
-  display: flex
-  flex-direction: column  
+  display: flex;
+  flex-direction: column; 
+  align-content: center;
+  margin: 3em;
 
- 
 }
 
 h1 {
-  color: #42524a;
+  display: flex;
+  justify-content: center;
+  color: $secondary-color;
   font: $nanum-gothic;
+  font-size: 4em;
 }
+
+h2 {
+  display: flex;
+  justify-content: center;
+  font-size: 2rem;
+}
+
 nav {
   display: flex;
-  flex-direction: row;
-  overflow: hidden;
-  background: center center no-repeat;
-  border: 1px solid;
-  border-radius: 3px;
+  justify-content: space-between;
+  height: 100px;
 }
+
+
+// textarea {
+//   display: flex;
+//   resize: none;
+//   border-radius: 5px;
+//   border: 1px solid;
+//   margin: 1em;
+
+// }
+
+form {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2px 0 2px;
+}
+
+
+.btn-secondary {
+  margin: 0 2px 0 2px;
+  height: calc(1.5em + .75rem + 2px);
+}
+

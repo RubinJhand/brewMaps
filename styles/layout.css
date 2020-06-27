@@ -1,17 +1,34 @@
-/* Error: expected ";".
- *   ,
- * 8 |   flex-direction: column
- *   |                 ^
- *   '
- *   layout.scss 8:17  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected ";".\a   \2577 \a 8 \2502    flex-direction: column\a   \2502                  ^\a   \2575 \a   layout.scss 8:17  root stylesheet';
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap");
+body {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin: 3em;
 }
+
+h1 {
+  color: #42524a;
+  font: "Nanum Gothic", serif;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 180px;
+}
+
+textarea {
+  display: flex;
+  resize: none;
+  border-radius: 5px;
+  border: 1px solid;
+  margin: 1em;
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em;
+}
+
+/*# sourceMappingURL=layout.css.map */

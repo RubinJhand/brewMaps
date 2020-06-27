@@ -2,26 +2,36 @@
 <html lang="en">
   <head>
     <title>Home Page</title>
-     <!-- Bootstrap CSS
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"> -->
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
      <!-- CSS -->
      <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
      <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
      <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
      <script type="text/javascript" src="/scripts/app.js"></script>
      <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  
-  <title>Brew Maps</title>
+    <!-- External JS -->
+     <script src="https://kit.fontawesome.com/f316481a98.js" crossorigin="anonymous"></script>
+
+  <title><em>Brew Maps</em></title>
   </head>
   <body>
 
     <nav>
-      <span> Brew Maps </span>
+      <span> 
+        <i class="fal fa-mug">hi</i> 
+        </span>
       <div>
-        <form action='login' method='POST'>
-          <textarea name='text'></textarea>
-          <textarea name='text'></textarea>
-          <button type='submit'>Login</button>
+        <form>
+          <div class="form-group">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-secondary">Login</button>
+          <button type="submit" class="btn btn-secondary">Register</button>
+        </div>
         </form>
       </div>
 
@@ -29,10 +39,14 @@
 
   </body>
 <main>
-  <body>
+  <body class="container">
     <h1>Brew Maps</h1>
     <h2>Independent Maps, User Created</h2>
-    <form type="text">Test form thing</form>
+    <form>
+    <input type="text" class="form-control" type="text" placeholder="Enter Your Location" >
+    <button type="submit" class="btn btn-secondary">Find maps!</button>
+    <p></p> 
+    </form>
   </body>
 </main>
 </html>
