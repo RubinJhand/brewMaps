@@ -120,7 +120,7 @@
     - ('/register')
   
   * User page
-    - ('/maps)
+    - ('/maps')
     - ('/:user_id/maps')
     - ('/maps/:user_id/location')
     - ('/maps/:map_id/edit')
