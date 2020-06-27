@@ -64,7 +64,7 @@
 
 - Logged In
 
-  - GET ('/:id/myMaps')
+  - GET ('/maps')
 
 - Map / User Homepage
 
@@ -98,16 +98,16 @@
 
 - Browse other peoples maps
 
-  - GET ('/:id/maps/browse')
+  - GET ('/maps')
 
     - can add map to favourites
-    - browse by location
+    - browse by location (city)
 
-  - POST ('/maps/create')
+  - POST ('/maps/map_id/pins')
 
     - if not logged in: REDIRECT GET ('/login')
       - res.direct
     - adds pin to map
 
-  - POST ('maps/:id/browse')
+  - POST ('/maps')
     - Logged in user on their homepage can rate others maps (favourite/like)
