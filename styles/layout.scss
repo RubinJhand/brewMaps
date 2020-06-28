@@ -9,7 +9,7 @@ $secondary-color: #42524a;
 
 body {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-content: center;
   margin: 3em;
 
@@ -33,7 +33,15 @@ nav {
   display: flex;
   justify-content: space-between;
   height: 100px;
+  display: flex;
+  height: 3em;
+  justify-content: space-between;
+  position: fixed;
+  width: 84%;
+  align-items: center;
 }
+
+
 
 
 // textarea {
