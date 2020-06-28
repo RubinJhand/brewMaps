@@ -108,8 +108,8 @@ module.exports = {
 
 //Route skeletons - jumping off point
 //add to server.js
-  //const <ROUTE1> = require('./routes/<ROUTE>');
-  //app.use('/<PATH>', <ROUTE(db));
+//const <ROUTE1> = require('./routes/<ROUTE>');
+//app.use('/<PATH>', <ROUTE(db));
 router.get('/:user_id/maps', (req, res) => {
 
   const templateVars = {
