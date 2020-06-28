@@ -29,7 +29,7 @@ module.exports = (db) => {
 // const { db } = require('<ENTER PATH HERE BEFORE IMPLEMENTING>')
 
 //Returns maps with the most likes
-const getMostLikedMaps = function (db, mapId) {
+const getMostLikedMaps = function (mapId) {
   return db(`
     SELECT *
     FROM maps
@@ -39,7 +39,7 @@ const getMostLikedMaps = function (db, mapId) {
 };
 
 //Returns all the user's maps
-const getUserMaps = function (db, userId) {
+const getUserMaps = function (userId) {
   return db(`
     SELECT *
     FROM maps
@@ -49,7 +49,7 @@ const getUserMaps = function (db, userId) {
 };
 
 //Returns all the user favourites and created
-const getAllUserContributions = function (db, userId) {
+const getAllUserContributions = function (userId) {
   return db(`
   SELECT *
   FROM maps WHERE userId = $1
@@ -63,7 +63,7 @@ const getAllUserContributions = function (db, userId) {
 };
 
 //Adds a new map to the database
-const addMap = function (db, userId, description) {
+const addMap = function (userId, description) {
   return db(`
     INSERT INTO maps (userId, description)
     VALUES ($1, $2)
@@ -72,7 +72,7 @@ const addMap = function (db, userId, description) {
 };
 
 //Favourite a map
-const favMap = function (db, userId, mapId) {
+const favMap = function (userId, mapId) {
   return db(`
     INSERT INTO favourite_maps (userId, mapId)
     VALUES ($1, $2)
@@ -81,7 +81,7 @@ const favMap = function (db, userId, mapId) {
 };
 
 //Returns maps not created by or favourited by user
-const notUserMaps = function (db, userId) {
+const notUserMaps = function (userId) {
   return db(`
     SELECT *
     FROM maps WHERE NOT userId = $1
@@ -102,3 +102,39 @@ module.exports = {
   favMap,
   notUserMaps
 };
+
+//Route skeletons - jumping off point
+//add to server.js
+  //const <ROUTE1> = require('./routes/<ROUTE>');
+  //app.use('/<PATH>', <ROUTE(db));
+router.get('/:user_id/maps', (req, res) => {
+
+  const templateVars = {
+    user: req.params.id
+  };
+
+  getUserMaps(req.params.id)
+    .then(res => {
+
+    })
+    .then(res => {
+      return getAllUserContributions(req.params.id);
+    })
+    .then(res => {
+      templateVars.pins = res.rows[0];
+      return res.render('maps', templateVars);
+    });
+});
+
+router.post("/:user_id/maps/location", (req, response) => {
+  const userId = req.session.user.id;
+  const description = req.body.description;
+  //create map if something entered
+  addMap(userId, description)
+    .then(res => {
+      if (res.rows.length) {
+        let mapId = res.rows[0]['id'];
+        return response.redirect(`/:user_id/maps/${mapId}`);
+      }
+    });
+});
