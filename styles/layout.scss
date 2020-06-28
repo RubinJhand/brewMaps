@@ -11,8 +11,6 @@ body {
   display: flex;
   flex-direction: column;
   align-content: center;
-  margin: 3em;
-
 }
 
 h1 {
@@ -32,10 +30,12 @@ h2 {
 nav {
   display: flex;
   justify-content: space-between;
-  height: 30px;
+  height: 100px;
   position: fixed;
-  width: 84%;
+  width: 100%;
   align-items: center;
+  background-color: $primary-color;
+  border-bottom: 3px solid $secondary-color;
 }
 
 span {
