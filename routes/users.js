@@ -8,11 +8,14 @@
 const express = require('express');
 const router = express.Router();
 
+//GETs all users information from database
 module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
         const users = data.rows;
+        //client treats response string as valid JSON object; also returns response to the client
+        //The methods are identical when an object or array is passed, but res.json() will also convert non-objects, such as null and undefined, which are not valid JSON.
         res.json({ users });
       })
       .catch(err => {
