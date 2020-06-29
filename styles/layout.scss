@@ -31,11 +31,11 @@ h2 {
 nav {
   display: flex;
   justify-content: space-between;
-  height: 100px;
-  position: fixed;
   width: 100%;
   align-items: center;
   background-color: $primary-color;
+  position: absolute;
+  left: 0;
 }
 .logo {
   width: 12em;
@@ -53,6 +53,7 @@ main {
   display: flex;
   flex-direction: column;
   align-content: center;
+  margin-top: 7em
 }
 
 
