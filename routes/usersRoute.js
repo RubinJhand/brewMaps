@@ -11,7 +11,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get("/", (req, res) => {
     console.log('\n\nrouter.get WORKING in usersRoute.js file:>> \n\n');
-    res.render("index");
+    res.render("index", { user: req.session.user });
   });
 
   router.post("/login/:id", (req, response) => {
