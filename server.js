@@ -60,8 +60,8 @@ app.get("/", (req, res) => {
   // FOR THE MAKERS
   // you will need to make another route (/maps/:id/markers)
   // that you will have to use AJAX on the front end to populate the markers on each map
-
-  const maps =['My Map 1', 'My Map 2', 'My Map 3'];
+  console.log('\n\nworking: server.js app.get(/):>>\n\n')
+  const maps = ['My Map 1', 'My Map 2', 'My Map 3'];
   res.render("index", { maps });
   let templateVars = { user: req.session.user };
   console.log('working? server.js file:>>', templateVars);

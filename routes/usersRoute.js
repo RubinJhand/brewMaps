@@ -9,10 +9,10 @@ const router = express.Router();
 
 //db is from server.js, app.use("/", usersRoute(db)); Line 47 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    console.log('\n\nrouter.get WORKING in usersRoute.js file:>> \n\n');
-    res.render("index");
-  });
+  // router.get("/", (req, res) => {
+  //   console.log('\n\nrouter.get WORKING in usersRoute.js file:>> \n\n');
+  //   res.render("index");
+  // });
 
   router.post("/login/:id", (req, response) => {
 
@@ -78,6 +78,7 @@ module.exports = (db) => {
     req.session = null;
     res.redirect("/");
   });
+
 
   return router;
 };
