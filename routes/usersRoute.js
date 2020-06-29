@@ -22,7 +22,7 @@ module.exports = (db) => {
         //if user exists, log them in, redirect to home page
         if (res.rows.length) {
           console.log('\n\ngetUserId:>>', res.rows[0]);
-          return response.redirect("/");
+          // return response.redirect("/");
         }
       })
       .catch(err => console.error(err.stack));
@@ -66,7 +66,7 @@ module.exports = (db) => {
 
         if (res.rows.length) {
           console.log('\n\nnotUserMaps:>>', res.rows);
-          // return response.redirect("/");
+          return response.redirect("/");
         }
       })
       .catch(err => console.error(err.stack));

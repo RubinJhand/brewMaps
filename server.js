@@ -63,9 +63,9 @@ app.get("/", (req, res) => {
   console.log('\n\nworking: server.js app.get(/):>>\n\n')
   const maps = ['My Map 1', 'My Map 2', 'My Map 3'];
   res.render("index", { maps });
-  let templateVars = { user: req.session.user };
-  console.log('working? server.js file:>>', templateVars);
-  res.render("index", templateVars);
+  // let templateVars = { user: req.session.user };
+  // console.log('\n\nworking? server.js file:>>', templateVars);
+  // res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {
