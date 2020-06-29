@@ -28,7 +28,7 @@ module.exports = (db) => {
 };
 
 // MOVE THESE EVENTUALLY
-
+/*
 // const { db } = require('<ENTER PATH HERE BEFORE IMPLEMENTING>')
 
 //Returns maps with the most likes
@@ -141,3 +141,4 @@ router.post("/:user_id/maps/location", (req, response) => {
       }
     });
 });
+*/
