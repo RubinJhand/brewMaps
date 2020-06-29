@@ -44,7 +44,7 @@ const usersRoute = require("./routes/usersRoute");
 
 // app.use("/api/users", usersRoutes(db));
 
-// app.use("/", usersRoute(db));
+app.use("/", usersRoute(db));
 
 // app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
@@ -54,12 +54,12 @@ const usersRoute = require("./routes/usersRoute");
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
+
   //  PUT MAPS LOGIC HERE
   // make sure you return an array of maps and send out thier namaes
   // FOR THE MAKERS
   // you will need to make another route (/maps/:id/markers)
   // that you will have to use AJAX on the front end to populate the markers on each map
-  let templateVars = { user: req.session.user || {} };
   console.log('\n\nworking: server.js app.get(/):>>\n\n')
   const maps = ['My Map 1', 'My Map 2', 'My Map 3'];
   res.render("index", { maps });

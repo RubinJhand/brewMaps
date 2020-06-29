@@ -9,10 +9,10 @@ const router = express.Router();
 
 //db is from server.js, app.use("/", usersRoute(db)); Line 47 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    console.log('\n\nrouter.get WORKING in usersRoute.js file:>> \n\n');
-    res.render("index", { user: req.session.user });
-  });
+  // router.get("/", (req, res) => {
+  //   console.log('\n\nrouter.get WORKING in usersRoute.js file:>> \n\n');
+  //   res.render("index", { user: req.session.user });
+  // });
 
   router.post("/login/:id", (req, response) => {
 
