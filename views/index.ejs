@@ -10,8 +10,12 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDPZzw7P0JN6ARr7TgqwufNUP-Vf-2jOc8">
+    </script>
+  <script type="text/javascript" src="/scripts/maps.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
   <!-- External JS -->
   <script src="https://kit.fontawesome.com/f316481a98.js" crossorigin="anonymous"></script>
 
@@ -63,11 +67,29 @@
             }
           }
 
-        </script>
-        <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC0uEVtL9WsNJA2dNyBWDsy3YjaKpTwg4U&callback=initMap">
-        </script>
-    </main>
+<main>
+  <body>
 
-  </body>
-</html>
+    <h1>Brew Maps</h1>
+    <h2>Check out some new maps!</h2>
+    <form class="form2">
+      <input type="text" class="form-control-2" placeholder="Enter Your Location" />
+      <div class="button-holder">
+        <button type="submit" class="find-map">Find maps!</button>
+        <button type="submit" class="create-map">Create New Map</button>
+      </div>
+    </form>
+
+    <% maps.forEach((name, id) => { %>
+      <h2><%= name %></h2>
+      <div class="maps" id="map-<%=id%>"  style="width:400px; height:250px;"></div>
+      <div class="edit-delete">
+        <button type="submit" class="edit-button">Edit</button>
+        <button type="submit" class="delete-button">Delete</button>
+      </div>
+      <% }) %>
+
+    </body>
+  </main>
+  </html>
+

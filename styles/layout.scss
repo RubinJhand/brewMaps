@@ -57,7 +57,6 @@ main {
 }
 
 
-
 form {
   display: flex;
   justify-content: space-evenly;
@@ -106,10 +105,10 @@ form {
 
 }
 
-#map{
-  height: 25em;
-  width: 100%;
-}
+// #map{
+//   height: 25em;
+//   width: 100%;
+// }
 
 .find-map {
   background-color: grey;
@@ -121,3 +120,48 @@ form {
   margin: auto;
   margin-top: .5em;
 }
+
+.create-map {
+  background-color:#cc9065;
+  border-radius: 1em;
+  border:none;
+  width: 9em;
+  color: $primary-color;
+  font-family: $nanum-gothic;
+  margin: auto;
+  margin-top: .5em;
+}
+
+.button-holder
+ {
+   display: flex;
+   margin-top: 10px;
+ }
+
+
+.edit-button {
+  background-color:#cc9065;
+  border-radius: 1em;
+  border:none;
+  width: 6em;
+  color: $primary-color;
+  font-family: $nanum-gothic;
+  margin: auto;
+  margin-top: .5em;
+}
+.delete-button {
+  background-color:#cc9065;
+  border-radius: 1em;
+  border:none;
+  width: 6em;
+  color: $primary-color;
+  font-family: $nanum-gothic;
+  margin: auto;
+  margin-top: .5em;
+}
+.edit-delete {
+  display: flex;
+    justify-content: space-around;
+}
+
+
