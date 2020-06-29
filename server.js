@@ -44,7 +44,7 @@ const usersRoute = require("./routes/usersRoute");
 
 // app.use("/api/users", usersRoutes(db));
 
-app.use("/", usersRoute(db));
+// app.use("/", usersRoute(db));
 
 // app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
@@ -54,8 +54,9 @@ app.use("/", usersRoute(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  let templateVars = { user: req.session.user };
-  console.log('working? server.js file:>>', templateVars);
+  let templateVars = { user: req.session.user || {} };
+  console.log('working? server.js file:>>', templateVars, req.session, 'hello string is here!!');
+  
   res.render("index", templateVars);
 });
 
