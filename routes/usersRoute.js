@@ -7,6 +7,7 @@ const {
   notUserMaps } = require('./api/usersApi');
 const router = express.Router();
 
+//db is from server.js, app.use("/", usersRoute(db)); Line 47 
 module.exports = (db) => {
   router.get("/", (req, res) => {
     console.log('\n\nrouter.get WORKING in usersRoute.js file:>> \n\n');
