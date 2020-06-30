@@ -61,7 +61,7 @@
         <button type="submit" class="create-map">Create New Map</button>
       </div>
     </form>
-
+    <!-- add if condition to check if there is a value -->
     <% maps.forEach((name, id) => { %>
     <h2><%= name %></h2>
     <div class="maps" id="map-<%=id%>" style="width:400px; height:250px;"></div>
