@@ -54,9 +54,18 @@ app.use("/", usersRoute(db));
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  let templateVars = { user: req.session.user };
-  console.log('working? server.js file:>>', templateVars);
-  res.render("index", templateVars);
+
+  //  PUT MAPS LOGIC HERE
+  // make sure you return an array of maps and send out thier namaes
+  // FOR THE MAKERS
+  // you will need to make another route (/maps/:id/markers)
+  // that you will have to use AJAX on the front end to populate the markers on each map
+  console.log('\n\nworking: server.js app.get(/):>>\n\n')
+  const maps = ['My Map 1', 'My Map 2', 'My Map 3'];
+  res.render("index", { maps });
+  // let templateVars = { user: req.session.user };
+  // console.log('\n\nworking? server.js file:>>', templateVars);
+  // res.render("index", templateVars);
 });
 
 app.listen(PORT, () => {

@@ -1,4 +1,3 @@
-
 <!-- NOT READY IF THIS COMMENT IS HERE -->
 <header>
 
@@ -10,31 +9,31 @@
           alt="coffe-map logo" style="width:150px;height:100px;">
       </span>
       <div>
-  
-        <% if (user) { %> 
-          <form class="form-inline" method="POST" action="/" >
-            <div style="width: 200px; left:100px; position:relative" >
-                <button type="submit" class="btn btn-secondary">Logout</button> 
-              
-        <% } else { %>
-        
-        <form method='POST' action='/login/1'>
-          <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="Enter email">
+
+        <% if (true) { %>
+        <form class="form-inline" method="POST" action="/">
+          <div style="width: 200px; left:100px; position:relative">
+            <button type="submit" class="btn btn-secondary">Logout</button>
+
+            <% } else { %>
+
+            <form method='POST' action='/login/1'>
+              <div class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                  placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+              </div>
+              <button type="submit" class="btn btn-secondary">Login</button>
+              <button type="submit" class="btn btn-secondary">Register</button>
           </div>
-          <div class="form-group">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-            <button type="submit" class="btn btn-secondary">Login</button>
-            <button type="submit" class="btn btn-secondary">Register</button>
-          </div>
-      </form>
-      <% } %>
+        </form>
+        <% } %>
       </div>
-  
+
     </nav>
-  
+
   </body>
 
 </header>
