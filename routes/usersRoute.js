@@ -29,6 +29,42 @@ module.exports = (db) => {
 
   });
 
+  Homepage
+  //    done
+  //   - GET ('/')
+
+  //    started: need to values
+  //   - GET ('/location') started, need values
+
+  //    started: implement better solution
+  //   - POST ('/login')
+
+  //    
+  //   - POST ('/register')
+
+  // - User page
+
+  //    GET is done
+  //   - GET and POST ('/maps')
+
+  //    
+  //   - GET ('/:user_id/maps')
+
+  //
+  //   - GET ('/maps/:user_id/location')
+
+  //
+  //   - POST ('/maps/:map_id/edit')
+
+  //
+  //   - POST ('/maps/:map_id/delete')
+
+  //
+  //   - POST ('/:user_id/maps/location')
+
+  //
+  //   - POST ('/maps/:map_id/pins')
+
   router.post('/login/:id', (req, response) => {
 
     //fetches user object by id
