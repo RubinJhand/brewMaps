@@ -4,130 +4,98 @@ const {
   getMostLikedMaps,
   getUserMaps,
   getAllUserContributions,
-  notUserMaps } = require('./api/usersApi');
+  notUserMaps,
+  addMap,
+  addPin } = require('./api/usersApi');
 const router = express.Router();
 
 //db is from server.js, app.use("/", usersRoute(db)); Line 47 
 module.exports = (db) => {
-  // router.get("/", (req, res) => {
-  //   console.log('\n\nrouter.get WORKING in usersRoute.js file:>> \n\n');
-  //   res.render("index");
-  // });
 
+  //NOT COMPLETED: need values 
   router.get('/location', (req, response) => {
-
     console.log('/location:>>')
-
   });
-  //1: console.log the get function
-  //2: 
+
   router.get('/maps', (req, response) => {
     console.log('/maps:>>')
-    const userId = 1; //change to what is required
-    let result = getUserMaps(db, userId);
-    response.render("index", { templateVar: result })
-
-  });
-
-  Homepage
-  //    done
-  //   - GET ('/')
-
-  //    started: need to values
-  //   - GET ('/location') started, need values
-
-  //    started: implement better solution
-  //   - POST ('/login')
-
-  //    
-  //   - POST ('/register')
-
-  // - User page
-
-  //    GET is done
-  //   - GET and POST ('/maps')
-
-  //    
-  //   - GET ('/:user_id/maps')
-
-  //
-  //   - GET ('/maps/:user_id/location')
-
-  //
-  //   - POST ('/maps/:map_id/edit')
-
-  //
-  //   - POST ('/maps/:map_id/delete')
-
-  //
-  //   - POST ('/:user_id/maps/location')
-
-  //
-  //   - POST ('/maps/:map_id/pins')
-
-  router.post('/login/:id', (req, response) => {
-
-    //fetches user object by id
-    getUserId(db, req.params.id)
-      .then(res => {
-        //if user exists, log them in, redirect to home page
-        if (res.rows.length) {
-          console.log('\n\ngetUserId:>>', res.rows[0]);
-          return response.redirect("/");
-        }
-      })
-      .catch(err => console.error(err.stack));
-
     //Returns maps with the most likes
-    getMostLikedMaps(db)
+    let result = getMostLikedMaps(db)
       .then(res => {
-
         if (res.rows.length) {
           console.log('\n\ngetMostLikedMaps:>>', res.rows);
-          // return response.redirect("/");
+          return response.render("index", { templateVar: result });
         }
       })
       .catch(err => console.error(err.stack));
-
-    //Returns all the user's maps
-    getUserMaps(db, req.params.id)
-      .then(res => {
-
-        if (res.rows.length) {
-          console.log('\n\ngetUserMaps:>>', res.rows);
-          // return response.redirect("/");
-        }
-      })
-      .catch(err => console.error(err.stack));
-
-    //Returns all the user favourites and created
-    getAllUserContributions(db, req.params.id)
-      .then(res => {
-
-        if (res.rows.length) {
-          console.log('\n\ngetAllUserContributions:>>', res.rows);
-          // return response.redirect("/");
-        }
-      })
-      .catch(err => console.error(err.stack));
-
-    //Returns maps not created by or favourited by user
-    notUserMaps(db, req.params.id)
-      .then(res => {
-
-        if (res.rows.length) {
-          console.log('\n\nnotUserMaps:>>', res.rows);
-          // return response.redirect("/");
-        }
-      })
-      .catch(err => console.error(err.stack));
-
-
   });
 
-  router.post("/logout", (req, res) => {
+  //NOT COMPLETE 
+  router.get('/maps/:userId/:location', (req, response) => {
+    console.log('/maps/:userId/:location GET')
+    //require location parameters to complete
+    getUserMaps(db, req.params.id);
+  });
+
+  //NOT COMPLETE values
+  router.post('/maps/:userId/:location', (req, response) => {
+    console.log('/maps/:userId/:location POST')
+    //require add, edit, delete
+  });
+
+  //Change '/create as' required
+  router.post('/create', (req, response) => {
+    console.log('\n\n/create POST:>>\n\n')
+    const userId = req.session.user.id; //or maybe req.body.userId
+    const description = req.body.description;
+    const numLikes = req.body.numLikes;
+    //add map
+    addMap(db, userId, description, numLikes)
+      .then(res => {
+        if (res.rows.length) {
+          let map_id = res.rows[0]['id'];
+          return response.redirect(`/maps/${map_id}`);
+        }
+      })
+  });
+
+  //Add pin
+  //Change '/create as' required
+  router.post('/maps/:mapId/pins', (req, response) => {
+    console.log('\n\n/create POST pins:>>\n\n');
+    const { title, description, image, latitude, longitude } = req.body;
+    addPin(db, title, description, image, latitude, longitude)
+      .then(res => {
+        if (res.rows.length) {
+          let map_id = res.rows[0]["id"];
+          return response.redirect(`/maps/${map_id}/pins`);
+        }
+      })
+  });
+
+  router.get('/maps/:userId', (req, response) => {
+    console.log('/maps/:userId:>>')
+    const userId = req.params.user.id; //change to what is required
+    const templateVars = {
+      userMaps: getAllUserContributions(db, userId)
+    }
+      .then(res => {
+        if (res.rows.length) {
+          console.log('\n\ngetAllUserContributions:>>', res.rows);
+          return response.render('index', templateVars);
+        }
+      })
+      .catch(err => console.error(err.stack));
+  });
+
+  router.post('/login/:id', (req, response) => {
+    console.log('\n\n/login/:id:>>', response.rows);
+    return response.redirect('/');
+  });
+
+  router.post('/logout', (req, res) => {
     req.session = null;
-    res.redirect("/");
+    res.redirect('/');
   });
 
   return router;
