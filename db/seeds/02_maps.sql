@@ -1,4 +1,4 @@
-INSERT INTO maps (user_id, description, num_of_like)
+INSERT INTO maps (user_id, title, num_like)
 VALUES (1, 'new coffee houses', 3), 
 (1, 'fun coffee houses', 15),
 (1, 'fun coffee houses', 4435),
