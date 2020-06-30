@@ -36,7 +36,7 @@ const getMostLikedMaps = function (mapId) {
   return db(`
     SELECT *
     FROM maps
-    ORDER BY num_of_like DESC
+    ORDER BY num_like DESC
   `, [mapId])
     .then(res => res.rows);
 };
