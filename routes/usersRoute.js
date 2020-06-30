@@ -89,8 +89,19 @@ module.exports = (db) => {
   });
 
   router.post('/login/:id', (req, response) => {
-    console.log('\n\n/login/:id:>>', response.rows);
-    return response.redirect('/');
+
+    // getMostLikedMaps(db)
+    // getUserMaps(db, 2)
+    // getAllUserContributions(db, 1)
+    // notUserMaps(db, 1)
+    addPin(db, 'tester1', 'tedium', 'butss', 1.2033, -12.34343, 1, 4)
+      .then(res => {
+        if (res.rows.length) {
+          console.log('\n\ngetMostLikedMaps:>>', res.rows);
+          // return response.redirect("/");
+        }
+      })
+      .catch(err => console.error(err.stack));
   });
 
   router.post('/logout', (req, response) => {
