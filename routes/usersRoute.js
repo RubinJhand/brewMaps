@@ -14,7 +14,22 @@ module.exports = (db) => {
   //   res.render("index");
   // });
 
-  router.post("/login/:id", (req, response) => {
+  router.get('/location', (req, response) => {
+
+    console.log('/location:>>')
+
+  });
+  //1: console.log the get function
+  //2: 
+  router.get('/maps', (req, response) => {
+    console.log('/maps:>>')
+    const userId = 1; //change to what is required
+    let result = getUserMaps(db, userId);
+    response.render("index", { templateVar: result })
+
+  });
+
+  router.post('/login/:id', (req, response) => {
 
     //fetches user object by id
     getUserId(db, req.params.id)

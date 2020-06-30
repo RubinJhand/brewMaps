@@ -21,8 +21,8 @@ const getUserMaps = function (db, userId) {
       SELECT *
       FROM maps
       WHERE user_id = $1
-      `, [userId]);
-  // .then(res => res.rows);
+      `, [userId])
+    .then(res => res.rows);
 };
 
 //Returns all the user favourites and created
