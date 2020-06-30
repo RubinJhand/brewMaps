@@ -11,8 +11,8 @@ const getMostLikedMaps = function (db) {
     SELECT *
     FROM maps
     ORDER BY num_like DESC
-  `);
-
+  `)
+  // .then(res => res.rows);
 };
 
 //Returns all the user's maps

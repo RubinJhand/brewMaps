@@ -18,13 +18,16 @@ module.exports = (db) => {
   });
 
   router.get('/maps', (req, response) => {
-    console.log('/maps:>>')
+
     //Returns maps with the most likes
     let result = getMostLikedMaps(db)
+      // console.log('\n\n/maps RESULT:>>', result)
       .then(res => {
         if (res.rows.length) {
-          console.log('\n\ngetMostLikedMaps:>>', res.rows);
-          return response.render("index", { templateVar: result });
+          console.log('\n\ngetMostLikedMaps  :>>', res.rows);
+          let user = true;
+          let maps = res.rows;
+          return response.render("index", { maps, user });
         }
       })
       .catch(err => console.error(err.stack));
@@ -34,7 +37,14 @@ module.exports = (db) => {
   router.get('/maps/:userId/:location', (req, response) => {
     console.log('/maps/:userId/:location GET')
     //require location parameters to complete
-    getUserMaps(db, req.params.id);
+    let result = getUserMaps(db, req.params.id)
+      .then(res => {
+        if (res.rows.length) {
+          console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
+          return response.render("index", { maps });
+        }
+      })
+      .catch(err => console.error(err.stack));
   });
 
   //NOT COMPLETE values

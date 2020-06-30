@@ -63,6 +63,7 @@ app.get("/", (req, res) => {
   console.log('\n\nworking: server.js app.get(/):>>\n\n')
   const maps = ['My Map 1', 'My Map 2', 'My Map 3'];
   const user = true;
+  console.log("check maps values:>>", maps);
   res.render("index", { maps, user });
   // let templateVars = { user: req.session.user };
   // console.log('\n\nworking? server.js file:>>', templateVars);
@@ -72,5 +73,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
-
-

@@ -23,6 +23,7 @@
 
 <main>
   <%- include('partials/_header') %>
+
   <body>
 
     <h1>Brew Maps</h1>
@@ -35,9 +36,9 @@
       </div>
     </form>
 
-    <% maps.forEach((name, id) => { %>
-    <h2><%= name %></h2>
-    <div class="maps" id="map-<%=id%>" style="width:400px; height:250px;"></div>
+    <% maps.forEach((map) => { %>
+    <h2><%= map.title %></h2>
+    <div class="maps" id="map-<%=map.id%>" style="width:400px; height:250px;"></div>
     <div class="edit-delete">
       <button type="submit" class="edit-button">Edit</button>
       <button type="submit" class="delete-button">Delete</button>
