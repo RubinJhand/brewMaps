@@ -23,18 +23,9 @@
 
 <main>
   <%- include('partials/_header') %>
+
   <body>
-
-    <h1>Brew Maps</h1>
-    <h2>Check out some new maps!</h2>
-    <form class="form2">
-      <input type="text" class="form-control-2" placeholder="Enter Your Location">
-      <div class="button-holder">
-        <button type="submit" class="find-map">Find maps!</button>
-        <button type="submit" class="create-map">Create New Map</button>
-      </div>
-    </form>
-
+    <form method='POST' action='maps/:userId'>
     <% maps.forEach((name, id) => { %>
     <h2><%= name %></h2>
     <div class="maps" id="map-<%=id%>" style="width:400px; height:250px;"></div>
@@ -43,7 +34,6 @@
       <button type="submit" class="delete-button">Delete</button>
     </div>
     <% }) %>
-
   </body>
 </main>
 
