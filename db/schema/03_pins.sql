@@ -6,5 +6,7 @@ CREATE TABLE pins (
   description VARCHAR(255),
   image TEXT,
   latitude REAL,
-  longitude REAL
+  longitude REAL,
+  user_id INTEGER REFERENCES users(id),
+  map_id INTEGER REFERENCES maps(id)
 );
