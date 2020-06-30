@@ -40,10 +40,10 @@ module.exports = (db) => {
   //NOT COMPLETE values
   router.post('/maps/:userId/:location', (req, response) => {
     console.log('/maps/:userId/:location POST')
-    //require add, edit, delete
+    //require edit, delete
   });
 
-  //Change '/create as' required
+  //Change '/create' as required
   router.post('/create', (req, response) => {
     console.log('\n\n/create POST:>>\n\n')
     const userId = req.session.user.id; //or maybe req.body.userId
@@ -60,7 +60,7 @@ module.exports = (db) => {
   });
 
   //Add pin
-  //Change '/create as' required
+  //Change '/create' as required
   router.post('/maps/:mapId/pins', (req, response) => {
     console.log('\n\n/create POST pins:>>\n\n');
     const { title, description, image, latitude, longitude } = req.body;
@@ -93,9 +93,9 @@ module.exports = (db) => {
     return response.redirect('/');
   });
 
-  router.post('/logout', (req, res) => {
+  router.post('/logout', (req, response) => {
     req.session = null;
-    res.redirect('/');
+    response.redirect('/');
   });
 
   return router;
