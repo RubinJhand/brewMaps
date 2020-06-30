@@ -1,7 +1,7 @@
 
 <!-- NOT READY IF THIS COMMENT IS HERE -->
-<header>
 
+<header>
   <body>
     <nav>
       <span>
@@ -10,14 +10,18 @@
           alt="coffe-map logo" style="width:150px;height:100px;">
       </span>
       <div>
-  
-        <% if (user) { %> 
+
+        <% if (user) { %>
           <form class="form-inline" method="POST" action="/" >
-            <div style="width: 200px; left:100px; position:relative" >
-                <button type="submit" class="btn btn-secondary">Logout</button> 
-              
+            <div class="form-group2" style="width: 300px;">
+                <button type="submit" class="btn btn-secondary">Logout</button>
+              <form class="form-inline" method="POST" action="maps/:userId">
+                <button type="submit" class="btn btn-secondary">Saved</button>
+              </form>
+
+
         <% } else { %>
-        
+
         <form method='POST' action='/login/1'>
           <div class="form-group">
             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -32,9 +36,9 @@
       </form>
       <% } %>
       </div>
-  
+
     </nav>
-  
+
   </body>
 
 </header>
