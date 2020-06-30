@@ -19,37 +19,37 @@
 
 **Not Logged In**
 
-  - On the home page, user inserts location to view map and renders map in location of choice. (maybe by gps coordinates) (depending on how api works?)
-  - On home page lists top 10 maps across planet
-  - Not-Logged-in user enters city and gets a list of the maps available
-  - When user selects map with pins, I click on a pin to get the description, name, image of coffee shop ==> doesn’t render a new page, popup to see stuff. (google api does this for us?)
-  - If a user tries to save map without login - redirects to login (or not have a save button if not logged in)
-  - User can register/login (if user clicks register, acts same as dummy login here? If time can un-dummy it. When register, log in automatically).
+- On the home page, user inserts location to view map and renders map in location of choice. (maybe by gps coordinates) (depending on how api works?)
+- On home page lists top 10 maps across planet
+- Not-Logged-in user enters city and gets a list of the maps available
+- When user selects map with pins, I click on a pin to get the description, name, image of coffee shop ==> doesn’t render a new page, popup to see stuff. (google api does this for us?)
+- If a user tries to save map without login - redirects to login (or not have a save button if not logged in)
+- User can register/login (if user clicks register, acts same as dummy login here? If time can un-dummy it. When register, log in automatically).
 
 **Logged In User**
 
-  - Logged in user taken to their home page(profile), where see favourite maps along with buttons to edit/delete next to each one
-  - Logged in user on their homepage also has ‘create map’ form field where you insert city.
-  - ‘Create map’ takes you to blank map of city, where you can add pin, add description (no pins, just roads and streets) ( api can add pins for us?)
-  - Logged in user on their homepage can select existing map, and add/edit/remove pins
-  - Logged in user on their homepage can rate their maps (favourite/like) (stretch to add count of number of people who’ve liked the map)
-  - Logged in user on their homepage can see maps contributed to, favourite maps
+- Logged in user taken to their home page(profile), where see favourite maps along with buttons to edit/delete next to each one
+- Logged in user on their homepage also has ‘create map’ form field where you insert city.
+- ‘Create map’ takes you to blank map of city, where you can add pin, add description (no pins, just roads and streets) ( api can add pins for us?)
+- Logged in user on their homepage can select existing map, and add/edit/remove pins
+- Logged in user on their homepage can rate their maps (favourite/like) (stretch to add count of number of people who’ve liked the map)
+- Logged in user on their homepage can see maps contributed to, favourite maps
 
 ### Routes
 
 **Homepage**
 
-  - GET ('/')
+- GET ('/')
 
-    - this is the homepage (not logged in)
-    - show list of most favourited maps (10)
-    - if user clicks favourite or create:
-      - REDIRECT - GET ('/login')
+  - this is the homepage (not logged in)
+  - show list of most favourited maps (10)
+  - if user clicks favourite or create:
+    - REDIRECT - GET ('/login')
 
-  - GET ('/location')
-    - get maps of entered location
-    - if user tries to favourite REDIRECT - GET ('/login')
-    - when user selects map with pins, I click on a pin to get the description, name, image of coffee shop ==> doesn’t render a new page, popup to see stuff. (google api does this for us?)
+- GET ('/location')
+  - get maps of entered location
+  - if user tries to favourite REDIRECT - GET ('/login')
+  - when user selects map with pins, I click on a pin to get the description, name, image of coffee shop ==> doesn’t render a new page, popup to see stuff. (google api does this for us?)
 
 * Login Page
 
@@ -64,7 +64,7 @@
 
 **Logged In**
 
-  - GET ('/maps')
+- GET ('/maps')
 
 - Map / User Homepage
 
@@ -113,18 +113,19 @@
     - Logged in user on their homepage can rate others maps (favourite/like)
 
 ### Summary of Routes
-  * Homepage
-    - ('/')
-    - ('/location')
-    - ('/login')
-    - ('/register')
-  
-  * User page
-    - ('/maps')
-    - ('/:user_id/maps')
-    - ('/maps/:user_id/location')
-    - ('/maps/:map_id/edit')
-    - ('/maps/:map_id/delete')
-    - ('/:user_id/maps/location')
-    - ('/maps/:map_id/pins')
 
+- Homepage
+
+  - GET ('/')
+  - GET ('/location')
+  - POST ('/login')
+  - POST ('/register')
+
+- User page
+  - GET and POST ('/maps')
+  - GET ('/:user_id/maps')
+  - GET ('/maps/:user_id/location')
+  - POST ('/maps/:map_id/edit')
+  - POST ('/maps/:map_id/delete')
+  - POST ('/:user_id/maps/location')
+  - POST ('/maps/:map_id/pins')
