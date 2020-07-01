@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>Home Page</title>
+  <title>Map Creation</title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -25,26 +25,14 @@
   <%- include('partials/_header') %>
 
   <body>
-
-    <h1>Brew Maps</h1>
-    <h2>Check out some new maps!</h2>
-    <form class="form2">
-      <input type="text" class="form-control-2" placeholder="Enter Your Location">
-      <div class="button-holder">
-        <button type="submit" class="find-map">Find maps!</button>
-           <button type="submit" class="btn btn-secondary">Create</button>
-      </div>
+    <form id="create-form" action="/create/" method="POST">
+     <div id="create-map-title">Create Map</div>
+     <div id="map-header">Map title </div>
+     <div>
+       <input type="text" id="map-title" name="mapTitle" placeholder="Enter A Title">
+      <button>Submit</button>
+     </div>
     </form>
-
-    <% maps.forEach((map) => { %>
-    <h2><%= map.title %></h2>
-    <div class="maps" id="map-<%=map.id%>" style="width:400px; height:250px;"></div>
-    <div class="edit-delete">
-      <button type="submit" class="edit-button">Edit</button>
-      <button type="submit" class="delete-button">Delete</button>
-    </div>
-    <% }) %>
-
   </body>
 </main>
 

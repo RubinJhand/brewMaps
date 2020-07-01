@@ -9,10 +9,10 @@ const {
   addPin } = require('./api/usersApi');
 const router = express.Router();
 
-
+//db is from server.js, app.use("/", usersRoute(db)); Line 47
 module.exports = (db) => {
 
-  //NOT COMPLETED: need values 
+  //NOT COMPLETED: need values
   router.get('/location', (req, response) => {
     console.log('/location:>>')
   });
@@ -31,7 +31,7 @@ module.exports = (db) => {
       .catch(err => console.error(err.stack));
   });
 
-  //WORKING but may need to adjust NOT COMPLETE 
+  //WORKING but may need to adjust NOT COMPLETE
   router.get('/maps/:userId/:location', (req, response) => {
 
     //require location parameters to complete
@@ -52,20 +52,26 @@ module.exports = (db) => {
     console.log('/maps/:userId/:location POST')
     //require edit, delete
   });
+  router.get('/create', (req, res) => {
+    console.log('hi');
+    // console.log(res.body);
+    const user = true;
+   res.render('createMapForm.ejs', {user})
+  })
 
-  //WORKING may need adjustment. Change '/create' as required
-  router.post('/create', (req, response) => {
-
-    const userId = 1; //or maybe req.body.userId
-    const description = 'fun with route testing';//req.body.description;
-    const numLikes = 0;//req.body.numLikes; need to addLikes function
-    //add map
-    addMap(db, userId, description, numLikes)
-      .then(res => {
-        if (res.rows.length) {
+  //Change '/create' as required
+  router.post('/create', (req, res) => {
+    //should use cookie for this
+    const user_id = 1;
+    const mapTitle = req.body.mapTitle;
+    addMap(db, user_id, mapTitle )
+      .then(data => {
+        if (data.rows.length) {
           const user = true;
-          const maps = res.rows;
-          return response.render("index", { maps, user });
+          const maps = data.rows;
+          let map_id = data.rows[0]['id'];
+          console.log('map_id is:>>', data.rows)
+          return res.render("index", { maps, user });
         }
       })
   });
@@ -108,11 +114,11 @@ module.exports = (db) => {
         }
       });
 
+
+    });
     router.post('/logout', (req, response) => {
       req.session = null;
       response.redirect('/');
     });
-
-    return router;
-  });
+  return router;
 };
