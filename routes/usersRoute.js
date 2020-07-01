@@ -9,10 +9,10 @@ const {
   addPin } = require('./api/usersApi');
 const router = express.Router();
 
-//db is from server.js, app.use("/", usersRoute(db)); Line 47 
+//db is from server.js, app.use("/", usersRoute(db)); Line 47
 module.exports = (db) => {
 
-  //NOT COMPLETED: need values 
+  //NOT COMPLETED: need values
   router.get('/location', (req, response) => {
     console.log('/location:>>')
   });
@@ -33,7 +33,7 @@ module.exports = (db) => {
       .catch(err => console.error(err.stack));
   });
 
-  //NOT COMPLETE 
+  //NOT COMPLETE
   router.get('/maps/:userId/:location', (req, response) => {
     console.log('/maps/:userId/:location GET')
     //require location parameters to complete
@@ -55,22 +55,25 @@ module.exports = (db) => {
     console.log('/maps/:userId/:location POST')
     //require edit, delete
   });
+  router.get('/create', (req, res) => {
+    // console.log(res.body);
+  const user = true;
+   res.render('createMapForm.ejs', {user})
+  })
 
   //Change '/create' as required
-  router.post('/create', (req, response) => {
-    console.log('\n\n/create POST:>>\n\n')
-    const userId = 1; //or maybe req.body.userId
-    const description = 'fun with route testing';//req.body.description;
-    const numLikes = 0;//req.body.numLikes; need to addLikes function
-    //add map
-    addMap(db, userId, description, numLikes)
-      .then(res => {
-        if (res.rows.length) {
+  router.post('/create', (req, res) => {
+    //should use cookie for this
+    const user_id = 1;
+    const mapTitle = req.body.mapTitle;
+    addMap(db, user_id, mapTitle )
+      .then(data => {
+        if (data.rows.length) {
           const user = true;
-          const maps = res.rows;
-          let map_id = res.rows[0]['id'];
-          console.log('map_id is:>>', res.rows)
-          return response.render("index", { maps, user });
+          const maps = data.rows;
+          let map_id = data.rows[0]['id'];
+          console.log('map_id is:>>', data.rows)
+          return res.render("index", { maps, user });
         }
       })
   });

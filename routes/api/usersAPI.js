@@ -44,7 +44,7 @@ const notUserMaps = function (db, userId) {
     FROM maps
     JOIN favourite_maps
     ON maps.user_id = favourite_maps.user_id
-    WHERE NOT maps.id = favourite_maps.map_id 
+    WHERE NOT maps.id = favourite_maps.map_id
     AND NOT favourite_maps.user_id = $1
     ORDER BY num_like ASC
     `, [userId])
@@ -52,20 +52,20 @@ const notUserMaps = function (db, userId) {
 };
 
 //Create map; add to database
-const addMap = function (db, user_id, title, num_like) {
+const addMap = function (db, user_id, title) {
   return db.query(`
-    INSERT INTO maps (user_id, title, num_like)
+    INSERT INTO maps (user_id, title)
     VALUES
-    ($1, $2, $3)
+    ($1, $2)
     RETURNING *
-    `, [user_id, title, num_like]);
+    `, [user_id, title]);
 };
 
 //Create pin; add to database
 const addPin = function (db, title, description, image, latitude, longitude, user_id, map_id) {
   return db.query(`
     INSERT INTO pins (title, description, image, latitude, longitude, user_id, map_id)
-    VALUES 
+    VALUES
     ($1, $2, $3, $4, $5, $6, $7)
     RETURNING *
     `, [title, description, image, latitude, longitude, user_id, map_id]);
