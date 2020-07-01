@@ -92,8 +92,7 @@ const deleteFav = function (db, userId, mapId) {
     DELETE FROM favourite_maps
       WHERE user_id = $1
       AND map_id = $2
-    `, [userId, mapId]
-  );
+    `, [userId, mapId]);
 };
 
 
