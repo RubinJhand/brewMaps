@@ -1,8 +1,10 @@
 //intitial testing, add 'id' after 'db' if/when getting user by ID
-const getUserId = function (db, placeholder) {
+const getUserId = function (db, userId) {
   return db.query(`
     SELECT *
-    FROM users`)
+    FROM users
+    WHERE id = $1
+    `, [userId])
 };
 
 //Returns maps with the most likes
