@@ -101,9 +101,9 @@ module.exports = (db) => {
   });
   //Delete buttons
   router.post('/myMaps/delete', (req, res) => {
-    const user = req.body.userId;
+    const user = req.session.userId;
     const mapId = req.body.mapId;
-    console.log("CHECK HERE", req.body);
+    console.log("user, mapID: ", user, mapId);
     deleteMap(db, user, mapId)
     .then(() => {
       res.redirect('/maps/myMaps');
