@@ -6,7 +6,9 @@ const {
   getAllUserContributions,
   notUserMaps,
   addMap,
+  deleteMap,
   addPin } = require('./api/usersApi');
+const { response } = require('express');
 const router = express.Router();
 
 //db is from server.js, app.use("/", usersRoute(db)); Line 47
@@ -22,13 +24,13 @@ module.exports = (db) => {
 
   router.get('/maps', (req, response) => {
     console.log('/maps:>>')
+
     //Returns maps with the most likes
     getMostLikedMaps(db)
       .then(res => {
-        if (res.rows.length) {
-          let user = true;
+        if (req.session.userId) {
           let maps = res.rows;
-          return response.render("index", { maps, user });
+          return response.render("index", { maps });
         }
       })
       .catch(err => console.error(err.stack));
@@ -38,11 +40,10 @@ module.exports = (db) => {
   router.get('/maps/:userId/:location', (req, response) => {
 
     //require location parameters to complete
-    const userId = 1;
+    const user = req.session.userId;
     getUserMaps(db, userId)
       .then(res => {
-        if (res.rows.length) {
-          const user = true;
+        if (req.session.userId) {
           const maps = res.rows;
           return response.render("index", { maps, user });
         }
@@ -57,24 +58,20 @@ module.exports = (db) => {
   });
 
   router.get('/create', (req, res) => {
-    console.log('\n\nhi\n\n');
-    // console.log(res.body);
-    const user = true;
+    const user = req.session.userId;
     res.render('createMapForm.ejs', { user })
   })
 
   //Change '/create' as required
   router.post('/create', (req, res) => {
     //should use cookie for this
-    const user_id = 1;
+    const user = req.session.userId;
     const mapTitle = req.body.mapTitle;
-    addMap(db, user_id, mapTitle)
+    addMap(db, user, mapTitle)
       .then(data => {
-        if (data.rows.length) {
-          const user = true;
+        if (req.session.userId) {
           const maps = data.rows;
-          let map_id = data.rows[0]['id'];
-          console.log('map_id is:>>', data.rows)
+          // let map_id = data.rows[0]['id'];
           return res.render("index", { maps, user });
         }
       })
@@ -83,20 +80,17 @@ module.exports = (db) => {
   //Add pin
   //Change '/create' as required
   router.post('/maps/:mapId/pins', (req, res) => {
-    console.log('\n\n/create POST pins:>>\n\n');
     const { title, description, image, latitude, longitude } = req.body;
-
     addPin(db, title, description, image, latitude, longitude, user_id, map_id)
       .then(data => {
-        if (data.rows.length) {
+        if (req.session.userId) {
           return res.redirect(`/maps/${map_id}/pins`);
         }
       })
   });
 
-  // is this route necessary
+  // All of users saved/my maps
   router.get('/maps/myMaps', (req, response) => {
-
     const user = req.session.userId;
     getUserMaps(db, user)
     .then(data => {
@@ -105,16 +99,26 @@ module.exports = (db) => {
     })
 
   });
+  //Delete buttons
+  router.post('/myMaps/delete', (req, res) => {
+    const user = req.body.userId;
+    const mapId = req.body.mapId;
+    console.log("CHECK HERE", req.body);
+    deleteMap(db, user, mapId)
+    .then(() => {
+      res.redirect('/maps/myMaps');
+    })
+  });
 
   //WORKING test again
   router.post('/login/:id', (req, response) => {
 
-    const userId = 1;
+    const userId = req.session.userId;
 
     getUserMaps(db, userId)
       .then(res => {
-        if (res.rows.length) {
-          let user = true;
+        if (req.session.userId) {
+
           let maps = result.rows;
           response.render("index", { maps, user });
         }

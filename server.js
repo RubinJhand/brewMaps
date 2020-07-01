@@ -71,9 +71,8 @@ app.get("/", (req, res) => {
 
   getMostLikedMaps(db)
     .then(result => {
-      if (result.rows.length) {
-        console.log('\n\ngetMostLikedMaps  :>>', result.rows)
-        let user = true;
+      if (req.session.userId) {
+        const user = req.session.userId;
         let maps = result.rows;
         res.render("index", { maps, user });
       }

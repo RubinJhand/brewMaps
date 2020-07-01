@@ -25,12 +25,18 @@
   <%- include('partials/_header') %>
 
   <body>
+    <h1>These are my maps!!!</h1>
     <% maps.forEach((map) => { %>
       <h2><%= map.title %></h2>
       <div class="maps" id="map-<%=map.id%>" style="width:400px; height:250px;"></div>
       <div class="edit-delete">
         <button type="submit" class="edit-button">Edit</button>
-        <button type="submit" class="delete-button">Delete</button>
+        <form method="POST" action="/myMaps/delete" class="id"></map>
+          <input type="hidden" name="mapId" value="<%= map.id %>" >
+          <input type="hidden" name="userId" value="1">
+          <button type="submit" class="delete-button">Delete</button>
+        </form>
+
       </div>
       <% }) %>
   </body>

@@ -97,6 +97,14 @@ const deleteFav = function (db, userId, mapId) {
     `, [userId, mapId]);
 };
 
+const deleteMap = function (db, userId, map_id) {
+  return db.query(`
+    DELETE FROM maps
+      WHERE user_id = $1
+      AND id = $2
+    `, [userId, map_id]);
+};
+
 
 module.exports = {
   getUserId,
@@ -108,5 +116,6 @@ module.exports = {
   addPin,
   getPins,
   deletePin,
-  deleteFav
+  deleteFav,
+  deleteMap
 };

@@ -12,12 +12,14 @@
       <div>
 
         <% if (user) { %>
-        <form class="form-inline" method="GET" action="/maps/myMaps">
           <div class="form-group2" style="width: 300px;">
-            <button type="submit" class="btn btn-secondary">Logout</button>
-            <form class="form-inline" method="POST" action="maps/:userId">
-              <button type="submit" class="btn btn-secondary">My Maps</button>
+            <form class="form-inline" method="POST" action="/logout">
+              <button type="submit" class="btn btn-secondary">Logout</button>
             </form>
+              <form class="form-inline" method="GET" action="/maps/myMaps">
+                <button type="submit" class="btn btn-secondary">My Maps</button>
+              </form>
+
 
 
             <% } else { %>
