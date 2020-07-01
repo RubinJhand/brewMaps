@@ -14,11 +14,11 @@ body {
   margin: auto;
 }
 #create-form{
-  width: 600px;
+  width: 500px;
     height: 300px;
     top: 20%;
     position: absolute;
-    background: grey;
+    background: url(https://i.pinimg.com/564x/6c/e2/1f/6ce21f66a82aa9210468eeba85d45391.jpg);
     align-self: center;
     display: flex;
     flex-direction: column;
@@ -27,6 +27,9 @@ body {
 
 #create-map-title {
   font-size: xxx-large;
+    font-size: xxx-large;
+    color: cornsilk;
+    font-family: initial;
 }
 
 #map-title {
@@ -123,7 +126,7 @@ form {
   border-radius: 20px;
   font-weight: bolder;
   margin: 0 0.5rem;
-
+  font-size: 10px;
 }
 
 
