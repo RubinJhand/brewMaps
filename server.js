@@ -36,6 +36,7 @@ app.use(express.static("public"));
 
 // const usersRoutes = require("./routes/users");
 const usersRoute = require("./routes/usersRoute");
+const { getMostLikedMaps } = require('./routes/api/usersApi');
 
 // const widgetsRoutes = require("./routes/widgets");
 
@@ -60,11 +61,19 @@ app.get("/", (req, res) => {
   // FOR THE MAKERS
   // you will need to make another route (/maps/:id/markers)
   // that you will have to use AJAX on the front end to populate the markers on each map
-  console.log('\n\nworking: server.js app.get(/):>>\n\n')
-  const maps = ['My Map 1', 'My Map 2', 'My Map 3'];
-  const user = true;
-  console.log("check maps values:>>", maps);
-  res.render("index", { maps, user });
+  // console.log('\n\nworking: server.js app.get(/):>>\n\n')
+
+  getMostLikedMaps(db)
+    .then(result => {
+      if (result.rows.length) {
+        console.log('\n\ngetMostLikedMaps  :>>', result.rows)
+        let user = true;
+        let maps = result.rows;
+        res.render("index", { maps, user });
+      }
+    })
+    .catch(err => console.error(err.stack));
+  // res.render("index", { maps, user });
   // let templateVars = { user: req.session.user };
   // console.log('\n\nworking? server.js file:>>', templateVars);
   // res.render("index", templateVars);
