@@ -37,11 +37,14 @@ module.exports = (db) => {
   router.get('/maps/:userId/:location', (req, response) => {
     console.log('/maps/:userId/:location GET')
     //require location parameters to complete
-    let result = getUserMaps(db, req.params.id)
+    const userId = 1;
+    getUserMaps(db, userId)
       .then(res => {
         if (res.rows.length) {
           console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
-          return response.render("index", { maps });
+          const user = true;
+          const maps = res.rows;
+          return response.render("index", { maps, user });
         }
       })
       .catch(err => console.error(err.stack));
@@ -56,15 +59,18 @@ module.exports = (db) => {
   //Change '/create' as required
   router.post('/create', (req, response) => {
     console.log('\n\n/create POST:>>\n\n')
-    const userId = req.session.user.id; //or maybe req.body.userId
-    const description = req.body.description;
-    const numLikes = req.body.numLikes;
+    const userId = 1; //or maybe req.body.userId
+    const description = 'fun with route testing';//req.body.description;
+    const numLikes = 0;//req.body.numLikes; need to addLikes function
     //add map
     addMap(db, userId, description, numLikes)
       .then(res => {
         if (res.rows.length) {
+          const user = true;
+          const maps = res.rows;
           let map_id = res.rows[0]['id'];
-          return response.redirect(`/maps/${map_id}`);
+          console.log('map_id is:>>', res.rows)
+          return response.render("index", { maps, user });
         }
       })
   });
@@ -82,20 +88,14 @@ module.exports = (db) => {
         }
       })
   });
-
+  // '/maps/:map_id' redirects here, fix
   router.get('/maps/:userId', (req, response) => {
-    console.log('/maps/:userId:>>')
-    const userId = req.params.user.id; //change to what is required
-    const templateVars = {
-      userMaps: getAllUserContributions(db, userId)
-    }
-      .then(res => {
-        if (res.rows.length) {
-          console.log('\n\ngetAllUserContributions:>>', res.rows);
-          return response.render('index', templateVars);
-        }
-      })
-      .catch(err => console.error(err.stack));
+
+
+    console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
+
+    return response.render("index");
+
   });
 
   router.post('/login/:id', (req, response) => {
