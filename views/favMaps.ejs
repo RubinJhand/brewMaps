@@ -25,7 +25,14 @@
   <%- include('partials/_header') %>
 
   <body>
-   <h1>my maps will go here we are working on it.</h1>
+    <% maps.forEach((map) => { %>
+      <h2><%= map.title %></h2>
+      <div class="maps" id="map-<%=map.id%>" style="width:400px; height:250px;"></div>
+      <div class="edit-delete">
+        <button type="submit" class="edit-button">Edit</button>
+        <button type="submit" class="delete-button">Delete</button>
+      </div>
+      <% }) %>
   </body>
 </main>
 

@@ -11,7 +11,10 @@ const router = express.Router();
 
 //db is from server.js, app.use("/", usersRoute(db)); Line 47
 module.exports = (db) => {
-
+  router.get("/login/:user", (req, res) => {
+  req.session.userId = req.params.user;
+  res.redirect("/");
+})
   //NOT COMPLETED: need values
   router.get('/location', (req, response) => {
     console.log('/location:>>')
@@ -94,11 +97,12 @@ module.exports = (db) => {
   // is this route necessary
   router.get('/maps/myMaps', (req, response) => {
 
-    // console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
-    const user = 1;
-
-
-    return response.render("favMaps", { user });
+    const user = req.session.userId;
+    getUserMaps(db, user)
+    .then(data => {
+      const maps = data.rows
+      return response.render("favMaps", { maps, user });
+    })
 
   });
 
