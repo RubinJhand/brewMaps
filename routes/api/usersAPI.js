@@ -71,6 +71,32 @@ const addPin = function (db, title, description, image, latitude, longitude, use
     `, [title, description, image, latitude, longitude, user_id, map_id]);
 };
 
+const getPins = function (db, mapId) {
+  return db.query(`
+    SELECT pins.*
+    FROM pins
+    WHERE pins.map_id = $1
+    ORDER BY pins.id
+  `, [mapId]);
+};
+
+const deletePin = function (db, pinId) {
+  return db.query(`
+    DELETE FROM pins
+    WHERE id=$1
+  `, [pinId]);
+};
+
+const deleteFav = function (db, userId, mapId) {
+  return db.query(`
+    DELETE FROM favourites
+      WHERE user_id = $1
+      AND list_id = $2
+    `, [userId, mapId]
+  );
+};
+
+
 module.exports = {
   getUserId,
   getMostLikedMaps,
@@ -78,5 +104,8 @@ module.exports = {
   getAllUserContributions,
   notUserMaps,
   addMap,
-  addPin
+  addPin,
+  getPins,
+  deletePin,
+  deleteFav
 };

@@ -20,11 +20,9 @@ module.exports = (db) => {
   router.get('/maps', (req, response) => {
 
     //Returns maps with the most likes
-    let result = getMostLikedMaps(db)
-      // console.log('\n\n/maps RESULT:>>', result)
+    getMostLikedMaps(db)
       .then(res => {
         if (res.rows.length) {
-          console.log('\n\ngetMostLikedMaps  :>>', res.rows);
           let user = true;
           let maps = res.rows;
           return response.render("index", { maps, user });
@@ -33,15 +31,14 @@ module.exports = (db) => {
       .catch(err => console.error(err.stack));
   });
 
-  //NOT COMPLETE
+  //WORKING but may need to adjust NOT COMPLETE
   router.get('/maps/:userId/:location', (req, response) => {
-    console.log('/maps/:userId/:location GET')
+
     //require location parameters to complete
     const userId = 1;
     getUserMaps(db, userId)
       .then(res => {
         if (res.rows.length) {
-          console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
           const user = true;
           const maps = res.rows;
           return response.render("index", { maps, user });
@@ -56,8 +53,9 @@ module.exports = (db) => {
     //require edit, delete
   });
   router.get('/create', (req, res) => {
+    console.log('hi');
     // console.log(res.body);
-  const user = true;
+    const user = true;
    res.render('createMapForm.ejs', {user})
   })
 
@@ -83,15 +81,16 @@ module.exports = (db) => {
   router.post('/maps/:mapId/pins', (req, response) => {
     console.log('\n\n/create POST pins:>>\n\n');
     const { title, description, image, latitude, longitude } = req.body;
-    addPin(db, title, description, image, latitude, longitude)
+
+    addPin(db, title, description, image, latitude, longitude, user_id, map_id)
       .then(res => {
         if (res.rows.length) {
-          let map_id = res.rows[0]["id"];
           return response.redirect(`/maps/${map_id}/pins`);
         }
       })
   });
-  // '/maps/:map_id' redirects here, fix
+
+  // is this route necessary
   router.get('/maps/:userId', (req, response) => {
 
 
@@ -101,26 +100,25 @@ module.exports = (db) => {
 
   });
 
+  //WORKING test again
   router.post('/login/:id', (req, response) => {
 
-    // getMostLikedMaps(db)
-    // getUserMaps(db, 2)
-    // getAllUserContributions(db, 1)
-    // notUserMaps(db, 1)
-    addPin(db, 'tester1', 'tedium', 'butss', 1.2033, -12.34343, 1, 4)
+    const userId = 1;
+
+    getUserMaps(db, userId)
       .then(res => {
         if (res.rows.length) {
-          console.log('\n\ngetMostLikedMaps:>>', res.rows);
-          // return response.redirect("/");
+          let user = true;
+          let maps = result.rows;
+          response.render("index", { maps, user });
         }
-      })
-      .catch(err => console.error(err.stack));
-  });
+      });
 
-  router.post('/logout', (req, response) => {
-    req.session = null;
-    response.redirect('/');
-  });
 
+    });
+    router.post('/logout', (req, response) => {
+      req.session = null;
+      response.redirect('/');
+    });
   return router;
 };
