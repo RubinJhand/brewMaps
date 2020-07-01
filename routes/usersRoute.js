@@ -78,25 +78,26 @@ module.exports = (db) => {
 
   //Add pin
   //Change '/create' as required
-  router.post('/maps/:mapId/pins', (req, response) => {
+  router.post('/maps/:mapId/pins', (req, res) => {
     console.log('\n\n/create POST pins:>>\n\n');
     const { title, description, image, latitude, longitude } = req.body;
 
     addPin(db, title, description, image, latitude, longitude, user_id, map_id)
-      .then(res => {
-        if (res.rows.length) {
-          return response.redirect(`/maps/${map_id}/pins`);
+      .then(data => {
+        if (data.rows.length) {
+          return res.redirect(`/maps/${map_id}/pins`);
         }
       })
   });
 
   // is this route necessary
-  router.get('/maps/:userId', (req, response) => {
+  router.get('/maps/myMaps', (req, response) => {
 
+    // console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
+    const user = 1;
+    
 
-    console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
-
-    return response.render("index");
+    return response.render("favMaps", {user});
 
   });
 
