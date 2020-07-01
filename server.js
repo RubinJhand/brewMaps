@@ -79,6 +79,12 @@ app.get("/", (req, res) => {
   // res.render("index", templateVars);
 });
 
+app.get("login/:user", (req, res)=>{
+  //set up cookie using req.params.user
+  
+
+})
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
