@@ -16,6 +16,7 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/:mapId/pins', (req, res) => {
     const mapId = req.params.mapId;
+    console.log("MAPID IS HERE ", mapId);
     getPins(db, mapId)
     .then(data => {
       res.json(data.rows);
@@ -23,7 +24,6 @@ module.exports = (db) => {
   })
   
   router.post('/:mapId/pins', (req, res) =>{
-   
     addPin(db, req.body.title, "", "", req.body.lat, req.body.lng, req.session.userId, req.params.mapId)
       .then(() => {
         res.json({ success: true })

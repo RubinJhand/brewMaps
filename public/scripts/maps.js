@@ -13,9 +13,8 @@ $(() => {
       });
       $.ajax({
         type: "GET",
-        url: `/maps/${data.mapId}/pins`,
+        url: `/maps/${data}/pins`,
         success: (res) => {
-          // console.log(res)
           res.forEach((pin)=> {
             new google.maps.Marker({
               position: { lat: pin.latitude, lng: pin.longitude },
@@ -35,11 +34,9 @@ $(() => {
           map: map,    
           title  
         });
-      // $.ajax(`/map/${data.mapId}/pins`)
-      
       $.ajax({
         type: "POST",
-        url: `/maps/${data.mapId}/pins`,
+        url: `/maps/${data}/pins`,
         data: {
           title,
           lat, 
@@ -51,32 +48,16 @@ $(() => {
         });
       });
       maps.push(map);
-  }
 
-    // addMarker({
-    //   coords:{lat: 52.1247, lng: -106.6705},
-    //   content: '<h1> HELLO WORLD</h1>'
-    //   })
+    // marker.addListener('click', function(){
+    //   // infoWindow.open(map, marker);
+    //   alert("pin is clicked!");
+    // });
+}
 
-//  //add marker function
-//   function addMarker(props){
-//     let marker = new google.maps.Marker({
-//       position: props.coords,
-//       map: map
-//     });
-//     //check content so description doesn't duplicate
-//     if(props.content) {
-//       //description box over pin
-//       let infoWindow = new google.maps.infoWindow({
-//         content: props.content
-//       });
-//        marker.addListener('click', function(){
-//         infoWindow.open(map, marker);
-//       });
-//     }
-//   }
+   
   $( ".maps" ).each( (index, value) => {
-    console.log("walue.data() is here >>>> ", $(value).data());
-    initMap(value.id, $(value).data());
+    console.log("walue.data() is here >>>> ", $(value).data().id);
+    initMap(value.id, $(value).data().id);
   })
 })
