@@ -32,9 +32,12 @@
       <input type="text" class="form-control-2" placeholder="Enter Your Location">
       <div class="button-holder">
         <button type="submit" class="find-map">Find maps!</button>
-           <button type="submit" class="btn btn-secondary">Create</button>
-      </div>
     </form>
+    <form method="GET" action="/create">
+      <button type="submit" class="btn btn-secondary">Create</button>
+    </form>
+    </div>
+
 
     <% maps.forEach((map) => { %>
     <h2><%= map.title %></h2>

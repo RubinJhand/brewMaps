@@ -18,7 +18,7 @@ module.exports = (db) => {
   });
 
   router.get('/maps', (req, response) => {
-
+    console.log('/maps:>>')
     //Returns maps with the most likes
     getMostLikedMaps(db)
       .then(res => {
@@ -52,11 +52,12 @@ module.exports = (db) => {
     console.log('/maps/:userId/:location POST')
     //require edit, delete
   });
+
   router.get('/create', (req, res) => {
-    console.log('hi');
+    console.log('\n\nhi\n\n');
     // console.log(res.body);
     const user = true;
-   res.render('createMapForm.ejs', {user})
+    res.render('createMapForm.ejs', { user })
   })
 
   //Change '/create' as required
@@ -64,7 +65,7 @@ module.exports = (db) => {
     //should use cookie for this
     const user_id = 1;
     const mapTitle = req.body.mapTitle;
-    addMap(db, user_id, mapTitle )
+    addMap(db, user_id, mapTitle)
       .then(data => {
         if (data.rows.length) {
           const user = true;
@@ -95,9 +96,9 @@ module.exports = (db) => {
 
     // console.log('\n\nrouter.get/maps/:userId/location:>>', res.rows);
     const user = 1;
-    
 
-    return response.render("favMaps", {user});
+
+    return response.render("favMaps", { user });
 
   });
 
@@ -116,10 +117,10 @@ module.exports = (db) => {
       });
 
 
-    });
-    router.post('/logout', (req, response) => {
-      req.session = null;
-      response.redirect('/');
-    });
+  });
+  router.post('/logout', (req, response) => {
+    req.session = null;
+    response.redirect('/');
+  });
   return router;
 };
