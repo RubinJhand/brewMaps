@@ -78,7 +78,7 @@ const getPins = function (db, mapId) {
     SELECT pins.*
     FROM pins
     WHERE pins.map_id = $1
-    ORDER BY pins.id
+    ORDER BY id
   `, [mapId]);
 };
 

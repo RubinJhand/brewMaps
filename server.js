@@ -76,6 +76,7 @@ app.get("/", (req, res) => {
       if (req.session.userId) {
         const user = req.session.userId;
         let maps = result.rows;
+        console.log('\n\nserver.js / maps user:>>', maps[0].id)
         res.render("index", { maps, user });
       }
     })
