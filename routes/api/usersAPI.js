@@ -89,9 +89,9 @@ const deletePin = function (db, pinId) {
 
 const deleteFav = function (db, userId, mapId) {
   return db.query(`
-    DELETE FROM favourites
+    DELETE FROM favourite_maps
       WHERE user_id = $1
-      AND list_id = $2
+      AND map_id = $2
     `, [userId, mapId]
   );
 };
