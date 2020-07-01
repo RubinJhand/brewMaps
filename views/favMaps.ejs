@@ -28,7 +28,7 @@
     <h1>These are my maps!!!</h1>
     <% maps.forEach((map) => { %>
       <h2><%= map.title %></h2>
-      <div class="maps" id="map-<%=map.id%>" style="width:400px; height:250px;"></div>
+      <div class="maps" id="map-<%=map.id%>" data-map-id="<%=map.id%>" style="width:400px; height:250px;"></div>
       <div class="edit-delete">
         <button type="submit" class="edit-button">Edit</button>
         <form method="POST" action="/myMaps/delete" class="id"></map>

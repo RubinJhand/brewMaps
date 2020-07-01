@@ -36,26 +36,26 @@ module.exports = (db) => {
       .catch(err => console.error(err.stack));
   });
 
-  //WORKING but may need to adjust NOT COMPLETE
-  router.get('/maps/:userId/:location', (req, response) => {
+  //WORKING but may need to adjust NOT COMPLETE, move into mapRoutes
+  // router.get('/maps/:location', (req, response) => {
 
-    //require location parameters to complete
-    const user = req.session.userId;
-    getUserMaps(db, userId)
-      .then(res => {
-        if (req.session.userId) {
-          const maps = res.rows;
-          return response.render("index", { maps, user });
-        }
-      })
-      .catch(err => console.error(err.stack));
-  });
+  //   //require location parameters to complete
+  //   const user = req.session.userId;
+  //   getUserMaps(db, userId)
+  //     .then(res => {
+  //       if (req.session.userId) {
+  //         const maps = res.rows;
+  //         return response.render("index", { maps, user });
+  //       }
+  //     })
+  //     .catch(err => console.error(err.stack));
+  // });
 
-  //NOT COMPLETE values
-  router.post('/maps/:userId/:location', (req, response) => {
-    console.log('/maps/:userId/:location POST')
-    //require edit, delete
-  });
+  // //NOT COMPLETE values, move into mapRoutes
+  // router.post('/maps/:location', (req, response) => {
+  //   console.log('/maps/:location POST')
+  //   //require edit, delete
+  // });
 
   router.get('/create', (req, res) => {
     const user = req.session.userId;
@@ -79,15 +79,15 @@ module.exports = (db) => {
 
   //Add pin
   //Change '/create' as required
-  router.post('/maps/:mapId/pins', (req, res) => {
-    const { title, description, image, latitude, longitude } = req.body;
-    addPin(db, title, description, image, latitude, longitude, user_id, map_id)
-      .then(data => {
-        if (req.session.userId) {
-          return res.redirect(`/maps/${map_id}/pins`);
-        }
-      })
-  });
+  // router.post('/maps/:mapId/pins', (req, res) => {
+  //   const { title, description, image, latitude, longitude } = req.body;
+  //   addPin(db, title, description, image, latitude, longitude, user_id, map_id)
+  //     .then(data => {
+  //       if (req.session.userId) {
+  //         return res.redirect(`/maps/${map_id}/pins`);
+  //       }
+  //     })
+  // });
 
   // All of users saved/my maps
   router.get('/maps/myMaps', (req, response) => {

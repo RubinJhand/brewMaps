@@ -1,12 +1,54 @@
 let maps = [];
 $(() => {
   console.log('ready');
-  function initMap(id) {
+  function initMap(id, data) {
+      //fetch pins so we can see them on page load
+      //server side endpoint
+      
       let map = new google.maps.Map(
         document.getElementById(id), {
           id,
           zoom: 14,
-          center: { lat: 52.1332, lng: -106.6700}
+          center: { lat: 53.5461, lng: -113.4938 } //this should be pulled from database
+      });
+      $.ajax({
+        type: "GET",
+        url: `/maps/${data.mapId}/pins`,
+        success: (res) => {
+          // console.log(res)
+          res.forEach((pin)=> {
+            new google.maps.Marker({
+              position: { lat: pin.latitude, lng: pin.longitude },
+              map: map,    
+              title: pin.title
+            })
+          })
+        }
+      });
+      map.addListener("click", function(e) {
+        console.log(e.latLng.lat(), e.latLng.lng())
+        const lat = e.latLng.lat();
+        const lng = e.latLng.lng();
+        const title = "new coffee shop is here";
+        new google.maps.Marker({    
+          position: { lat, lng }, 
+          map: map,    
+          title  
+        });
+      // $.ajax(`/map/${data.mapId}/pins`)
+      
+      $.ajax({
+        type: "POST",
+        url: `/maps/${data.mapId}/pins`,
+        data: {
+          title,
+          lat, 
+          lng
+        },
+        success: (res) => {
+          console.log(res)
+          }
+        });
       });
       maps.push(map);
   }
@@ -34,7 +76,7 @@ $(() => {
 //     }
 //   }
   $( ".maps" ).each( (index, value) => {
-    console.log(value.id);
-    initMap(value.id);
+    console.log("walue.data() is here >>>> ", $(value).data());
+    initMap(value.id, $(value).data());
   })
 })

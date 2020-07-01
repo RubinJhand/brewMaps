@@ -20,7 +20,7 @@
 **Not Logged In**
 
   - On the home page, user inserts location to view map and renders map in location of choice. (maybe by gps coordinates) (depending on how api works?)
-  - On home page lists top 10 maps across planet
+  - On home page lists top maps across planet
   - Not-Logged-in user enters city and gets a list of the maps available
   - When user selects map with pins, I click on a pin to get the description, name, image of coffee shop ==> doesn’t render a new page, popup to see stuff. (google api does this for us?)
   - If a user tries to save map without login - redirects to login (or not have a save button if not logged in)

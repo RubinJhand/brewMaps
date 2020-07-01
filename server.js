@@ -41,6 +41,7 @@ app.use(express.static("public"));
 
 // const usersRoutes = require("./routes/users");
 const usersRoute = require("./routes/usersRoute");
+const mapsRoute = require("./routes/mapsRoute");
 const { getMostLikedMaps } = require('./routes/api/usersApi');
 
 // const widgetsRoutes = require("./routes/widgets");
@@ -52,6 +53,7 @@ const { getMostLikedMaps } = require('./routes/api/usersApi');
 
 
 app.use("/", usersRoute(db));
+app.use("/maps", mapsRoute(db));
 
 // app.use("/api/widgets", widgetsRoutes(db));
 // Note: mount other resources here, using the same pattern above
