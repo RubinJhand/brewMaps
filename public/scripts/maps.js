@@ -31,7 +31,8 @@ $(() => {
         const title = "new coffee shop is here";
         new google.maps.Marker({    
           position: { lat, lng }, 
-          map: map,    
+          map: map,
+          draggable: true,    
           title  
         });
       $.ajax({
