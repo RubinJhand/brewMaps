@@ -65,6 +65,7 @@ const addMap = function (db, user_id, title) {
 
 //Create pin; add to database
 const addPin = function (db, title, description, image, latitude, longitude, user_id, map_id) {
+  // console.log(db, title, description, image, latitude, longitude, user_id, map_id);
   return db.query(`
     INSERT INTO pins (title, description, image, latitude, longitude, user_id, map_id)
     VALUES

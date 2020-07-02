@@ -22,11 +22,13 @@ module.exports = (db) => {
       res.json(data.rows);
     })
   })
-  
+
   router.post('/:mapId/pins', (req, res) =>{
     addPin(db, req.body.title, "", "", req.body.lat, req.body.lng, req.session.userId, req.params.mapId)
-      .then(() => {
-        res.json({ success: true })
+      .then((data) => {
+        // console.log(data.rows[0]);
+        const pin = data.rows[0];
+        res.json({pin})
       })
   })
 
