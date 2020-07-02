@@ -6,4 +6,9 @@ VALUES ('Revolve Cafe', 'Fun little tropical coffee house', 'https://www.google.
 ('Burquenas Extranjeras', 'Coffee and breakfast burritos', 'image', 53.5461, -113.4938, 4, 4),
 ('Christina Lake Cafe', 'Best Egg Breakfast and Coffee', 'image', 53.5461, -113.4938, 4, 4),
 ('Red Bandit Coffee', 'Best cheap coffee in town', 'image', 53.5461, -113.4938, 5, 5),
-('Peace Lily Tea and Coffee House', 'Inspired beverages', 'image', 53.5461, -113.4938, 5, 5);
+('Peace Lily Tea and Coffee House', 'Inspired beverages', 'image', 53.5461, -113.4938, 5, 5),
+('Policia Nacional', 'Bad Coffee', 'image', -0.1624, -78.4770, 3, 7),
+('Quicentro', 'No Coffee, Coffee', 'image', -0.1623, -78.4834, 3, 7),
+('Chris Columbus', 'Stolen Coffee!', 'image', 41.3765, 2.1778, 3, 6),
+('Spanish Gotic Coffee', 'so goth', 'image', 41.3791, 2.1761, 3, 6),
+('Spanish Gotic Coffee', 'so goth', 'image', 35.7061, 139.6780, 3, 5);

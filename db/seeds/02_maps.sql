@@ -7,4 +7,9 @@ VALUES (1, 'Hipster Coffee', 3),
 (3, 'Alligator Coffee List', 32006),
 (4, 'Local Coffees by Brenda', 87110),
 (4, 'Get Brews Here', 734186),
-(4, 'Lists of Places I Like', 8);
+(4, 'Lists of Places I Like', 8),
+(3, 'Bad Coffee', 54524),
+(3, 'Quicentro', 5343),
+(3, 'Stolen Coffee!', 6943),
+(3, 'Spanish Gotic Coffee', 23426),
+(3, 'so goth', 23435);
