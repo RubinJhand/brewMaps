@@ -65,14 +65,8 @@ nav {
   width: 100%;
   align-items: center;
   background-color: $primary-color;
-<<<<<<< HEAD
-  position: fixed;
-  left: 0;
-  height: 5em;
-=======
   position: absolute;
   left: 0;
->>>>>>> f5654c1cc2360e6d7414aa7f690894ca39585ac5
 }
 .logo {
   width: 12em;
@@ -85,20 +79,12 @@ span {
 }
 
 main {
-<<<<<<< HEAD
-  // margin-top: 5em;
-  // margin:auto;
-  display: flex;
-  flex-direction: column;
-  align-content: center;
-=======
   margin-top: 5em;
   margin:auto;
   display: flex;
   flex-direction: column;
   align-content: center;
   margin-top: 7em
->>>>>>> f5654c1cc2360e6d7414aa7f690894ca39585ac5
 }
 
 .map-layout {

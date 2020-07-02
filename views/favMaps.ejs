@@ -25,15 +25,14 @@
   <%- include('partials/_header') %>
 
   <body>
-    <h1>These are my maps!!!</h1>
+    <h1>My Maps</h1>
     <% maps.forEach((map) => { %>
     <h2><%= map.title %></h2>
-    <div class="maps" id="map-<%=map.id%>" data-id="<%=map.id%>" style="width:400px; height:250px;  z-index: -1;"></div>
+    <div class="maps" id="map-<%=map.id%>" data-id="<%=map.id%>" style=" margin: 0 auto; width:900px; height:500px; z-index: -1;"></div>
     <!-- <div class="edit-delete"> -->
       <!-- <button type="submit" class="edit-button">Edit</button> -->
       <form method="POST" action="/myMaps/delete" class="id"></map>
         <input type="hidden" name="mapId" value="<%= map.id %>">
-
         <button type="submit" class="delete-button">Delete</button>
       </form>
 
