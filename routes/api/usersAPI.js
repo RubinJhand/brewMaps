@@ -74,6 +74,8 @@ const addPin = function (db, title, description, image, latitude, longitude, use
     `, [title, description, image, latitude, longitude, user_id, map_id]);
 };
 
+
+
 const getPins = function (db, mapId) {
   return db.query(`
     SELECT pins.*
@@ -82,6 +84,15 @@ const getPins = function (db, mapId) {
     ORDER BY id
   `, [mapId]);
 };
+
+const updatePin = function (db, pinId, title) {
+  return db.query(`
+    UPDATE pins
+    SET title = $1
+    WHERE id = $2`,
+    [title, pinId]);
+}
+
 
 const deletePin = function (db, pinId) {
   return db.query(`
@@ -118,5 +129,6 @@ module.exports = {
   getPins,
   deletePin,
   deleteFav,
-  deleteMap
+  deleteMap,
+  updatePin
 };

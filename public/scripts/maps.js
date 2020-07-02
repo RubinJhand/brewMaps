@@ -1,10 +1,17 @@
 let maps = [];
 
-const deletePin = function (event) {
-  // console.log("THIS IS DELETE PIN RIGHT HERE");
-}
 
 $(() => {
+  $(document).on('click', '.pin-popup', function () {
+    console.log("popup for thing", $(this).data("id")) //then we can go find the query, make form
+    $.ajax({
+      type: "GET",
+      url: `/maps/${data}/pins`,
+      success: (res) => {
+
+      }
+    })
+  })
   // console.log('ready');
   function initMap(id, data) {
     //fetch pins so we can see them on page load
@@ -30,6 +37,32 @@ $(() => {
             animation: google.maps.Animation.DROP,
             title: pin.title,
             pinId: pin.id
+          })
+
+          marker.addListener("click", function (e) {
+            const popUpBox = new google.maps.InfoWindow({
+              content: `<div class='pin-popup' data-id='${pin.id}'>
+              <form class='pin-form'>
+              <input type="hidden" name="pinId" value='${pin.id}'/>
+              <h2> ${pin.title}</h2>
+              <input type="text" id="pin-text" name="shop-name" placeholder="Shop Name"></input>
+              </form>
+              </div>`
+            })//add input field to capture text, change classes and html to make more interactive
+            popUpBox.open(map, marker);
+            setTimeout(function () {
+              const form = $('.pin-form');
+              console.log('form is here >>> ', form);
+              form.submit(function (e) {
+                e.preventDefault();
+                const data = form.serialize()
+                $.post('/maps/pins/edit', data, cb => {
+                  console.log("callback worked");
+
+
+                })
+              })
+            }, 500);
           })
           marker.addListener("dblclick", function (e) {
             // console.log('\n\nit here!', e)
