@@ -14,9 +14,9 @@ const router = express.Router();
 //db is from server.js, app.use("/", usersRoute(db)); Line 47
 module.exports = (db) => {
   router.get("/login/:user", (req, res) => {
-  req.session.userId = req.params.user;
-  res.redirect("/");
-})
+    req.session.userId = req.params.user;
+    res.redirect("/");
+  })
   //NOT COMPLETED: need values
   router.get('/location', (req, response) => {
     console.log('/location:>>')
@@ -93,10 +93,10 @@ module.exports = (db) => {
   router.get('/maps/myMaps', (req, response) => {
     const user = req.session.userId;
     getUserMaps(db, user)
-    .then(data => {
-      const maps = data.rows
-      return response.render("favMaps", { maps, user });
-    })
+      .then(data => {
+        const maps = data.rows
+        return response.render("favMaps", { maps, user });
+      })
 
   });
   //Delete buttons
@@ -105,10 +105,20 @@ module.exports = (db) => {
     const mapId = req.body.mapId;
     console.log("user, mapID: ", user, mapId);
     deleteMap(db, user, mapId)
-    .then(() => {
-      res.redirect('/maps/myMaps');
-    })
+      .then(() => {
+        res.redirect('/maps/myMaps');
+      })
   });
+
+  // router.post('/maps/Mymaps/:pinId', (req, res) => {
+  //   const pinId = req
+  // });
+
+
+
+
+
+
 
   //WORKING test again
   router.post('/login/:id', (req, response) => {
