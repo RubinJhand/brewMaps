@@ -8,6 +8,7 @@ $font-stack: Helvetica, sans-serif;
 $primary-color:  #EEE;
 $secondary-color: #42524a;
 
+<<<<<<< HEAD
 // body {
 //   width: 75%;
 //   display: flex;
@@ -30,6 +31,12 @@ $secondary-color: #42524a;
     font-size: xxx-large;
     color: cornsilk;
     font-family: initial;
+=======
+body {
+  width: 75%;
+  display: flex;
+  margin: auto;
+>>>>>>> f5654c1cc2360e6d7414aa7f690894ca39585ac5
 }
 
 #map-title {
@@ -58,9 +65,14 @@ nav {
   width: 100%;
   align-items: center;
   background-color: $primary-color;
+<<<<<<< HEAD
   position: fixed;
   left: 0;
   height: 5em;
+=======
+  position: absolute;
+  left: 0;
+>>>>>>> f5654c1cc2360e6d7414aa7f690894ca39585ac5
 }
 .logo {
   width: 12em;
@@ -73,11 +85,20 @@ span {
 }
 
 main {
+<<<<<<< HEAD
   // margin-top: 5em;
   // margin:auto;
   display: flex;
   flex-direction: column;
   align-content: center;
+=======
+  margin-top: 5em;
+  margin:auto;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  margin-top: 7em
+>>>>>>> f5654c1cc2360e6d7414aa7f690894ca39585ac5
 }
 
 .map-layout {
@@ -152,6 +173,7 @@ form {
   font-family: $nanum-gothic;
   margin: auto;
   margin-top: .5em;
+<<<<<<< HEAD
 }
 
 .create-map {
@@ -202,4 +224,6 @@ form {
     justify-content: flex-end;
     align-items: center;
     background-color: #EEE;
+=======
+>>>>>>> f5654c1cc2360e6d7414aa7f690894ca39585ac5
 }
