@@ -75,12 +75,12 @@ $(() => {
             title,
             pinId
           });
-          //making event listener to that maker,
+          //making event listener to that marker,
           marker.addListener("dblclick", function (e) {
             // console.log('\n\nit here!', e)
             $.ajax({
               type: "POST",
-              url: `/maps/pins/${pin.id}/delete`, //needs to be updated to relevant ID
+              url: `/maps/pins/${pinId}/delete`, //needs to be updated to relevant ID
               data: {
                 title,
                 lat,
