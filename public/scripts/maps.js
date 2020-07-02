@@ -1,6 +1,6 @@
 let maps = [];
 
-const deletePin = function(event) {
+const deletePin = function (event) {
   // console.log("THIS IS DELETE PIN RIGHT HERE");
 }
 
@@ -16,14 +16,14 @@ $(() => {
       zoom: 14,
       center: { lat: 53.5461, lng: -113.4938 } //this should be pulled from database
     });
-// console.log(data);
+    // console.log(data);
     $.ajax({
       type: "GET",
       url: `/maps/${data}/pins`,
       success: (res) => {
         res.forEach((pin) => {
 
-        let marker = new google.maps.Marker({
+          let marker = new google.maps.Marker({
             position: { lat: pin.latitude, lng: pin.longitude },
             map: map,
             draggable: true,
@@ -56,17 +56,17 @@ $(() => {
 
       //make ajax request here with vars above
       $.ajax({
-          type: "POST",
-          url: `/maps/${data}/pins`,
-          data: {
-              title,
-              lat,
-              lng
-            },
-            //getting pin ID with the success and set pinID
+        type: "POST",
+        url: `/maps/${data}/pins`,
+        data: {
+          title,
+          lat,
+          lng
+        },
+        //getting pin ID with the success and set pinID
         success: (res) => {
-          // console.log(res);
-          let pinId = res.pinId
+
+          let pinId = res.pin.id
           const marker = new google.maps.Marker({
             position: { lat, lng },
             map: map,
@@ -77,15 +77,10 @@ $(() => {
           });
           //making event listener to that marker,
           marker.addListener("dblclick", function (e) {
-            // console.log('\n\nit here!', e)
+            // console.log('\n\nit here!', pinId)
             $.ajax({
               type: "POST",
-              url: `/maps/pins/${pinId}/delete`, //needs to be updated to relevant ID
-              data: {
-                title,
-                lat,
-                lng
-              },
+              url: `/maps/pins/${pinId}/delete`,
               success: (res) => {
                 marker.setMap(null);
               }
