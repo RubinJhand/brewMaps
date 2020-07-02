@@ -9,6 +9,7 @@ const {
   deleteMap,
   deletePin,
   getPins,
+  updatePin,
   addPin } = require('./api/usersApi');
 const { response } = require('express');
 const router = express.Router();
@@ -41,5 +42,14 @@ module.exports = (db) => {
         res.json({ success: true })
       })
   });
+
+  router.post(`/pins/edit`, (req, res) =>{
+    updatePin(db, req.body.pinId, req.body['shop-name'])
+      .then(() =>{
+        res.json({ success:true })
+      })
+    // console.log("pins request thing here look here >>>>> ",req.body);
+  })
+
   return router;
 }
