@@ -23,7 +23,6 @@ const getUserMaps = function (db, userId) {
       SELECT *
       FROM maps
       WHERE user_id = $1
-      ORDER BY id DESC
       `, [userId])
   // .then(res => res.rows);
 };

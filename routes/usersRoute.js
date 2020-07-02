@@ -113,11 +113,6 @@ module.exports = (db) => {
  
 
 
-
-
-
-
-
   //WORKING test again
   router.post('/login/:id', (req, response) => {
 
