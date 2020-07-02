@@ -7,6 +7,7 @@ const {
   notUserMaps,
   addMap,
   deleteMap,
+  deletePin,
   getPins,
   addPin } = require('./api/usersApi');
 const { response } = require('express');
@@ -28,5 +29,15 @@ module.exports = (db) => {
         res.json({ success: true })
       })
   })
+
+   router.post(`/pins/:pinId/delete`, (req, res) => {
+    const pinId = req.params.pinId;
+    console.log("PIN ID IS HERE ", pinId);
+
+    deletePin(db, pinId)
+      .then(() =>{
+        res.json({ success: true })
+      })
+  });
   return router;
 }

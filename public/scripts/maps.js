@@ -1,7 +1,8 @@
 let maps = [];
-// var delMarker = function (markerPar) {
-//   markerPar.setMap(null);
-// };
+
+const deletePin = function(event) {
+  console.log("THIS IS DELETE PIN RIGHT HERE");
+}
 
 $(() => {
   console.log('ready');
@@ -15,12 +16,13 @@ $(() => {
       zoom: 14,
       center: { lat: 53.5461, lng: -113.4938 } //this should be pulled from database
     });
+
     $.ajax({
       type: "GET",
       url: `/maps/${data}/pins`,
       success: (res) => {
         res.forEach((pin) => {
-          new google.maps.Marker({
+        let marker = new google.maps.Marker({
             position: { lat: pin.latitude, lng: pin.longitude },
             map: map,
             draggable: true,
@@ -28,59 +30,73 @@ $(() => {
             title: pin.title,
             pinId: pin.id
           })
+          marker.addListener("dblclick", function (e) {
+            console.log('\n\nit here!', e)
+            $.ajax({
+              type: "POST",
+              url: `/maps/pins/${pin.id}/delete`,
+              
+              success: (res) => {
+                marker.setMap(null)
+              }
+
+            });
+          });
+
         })
       }
     });
+
     map.addListener("click", function (e) {
       console.log(e.latLng.lat(), e.latLng.lng())
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
       const title = "new coffee shop is here";
-      const marker = new google.maps.Marker({
-        position: { lat, lng },
-        map: map,
-        draggable: true,
-        animation: google.maps.Animation.DROP,
-        title
-      });
-      //         map.addListener(marker, "rightclick", function (point) {
-      //           delMarker(marker)
-      //         });
-      // }
-      // google.maps.event.addListener(marker, "dblclick", function() {
-      //   map.removeOverlay(marker);
-      // });
-      marker.addListener("dblclick", function (e) {
-        console.log('\n\nit here!', marker)
-
-        marker.setMap(null);
-      });
-
+      
+      //make ajax request here with vars above
       $.ajax({
-        type: "POST",
-        url: `/maps/${data}/pins`,
-        data: {
-          title,
-          lat,
-          lng
-        },
+          type: "POST",
+          url: `/maps/pins/${pin.id}/delete`,
+          data: {
+              title,
+              lat,
+              lng
+            },
+            //getting pin ID with the success and set pinID
         success: (res) => {
-          console.log(res)
+          let pinId = JSON.parse(res).pinId
+          const marker = new google.maps.Marker({
+            position: { lat, lng },
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title,
+            pinId 
+          });
+          //making event listener to that maker, 
+          marker.addListener("dblclick", function (e) {
+            console.log('\n\nit here!', e)
+            $.ajax({
+              type: "POST",
+              url: `/maps/pins/${pin.id}/delete`, //needs to be updated to relevant ID
+              data: {
+                title,
+                lat,
+                lng
+              },
+              success: (res) => {
+                marker.setMap(null);
+              }
+            });
+          });
         }
-      });
-      console.log("maps is here >>>>>> ", maps);
-    });
+      })
+  });
+
     maps.push(map);
-
-    // marker.addListener('click', function(){
-    //   // infoWindow.open(map, marker);
-    //   alert("pin is clicked!");
-    // });
-  }
-
 
   $(".maps").each((index, value) => {
     console.log("walue.data() is here >>>> ", $(value).data().id);
     initMap(value.id, $(value).data().id);
   })
-})
+});

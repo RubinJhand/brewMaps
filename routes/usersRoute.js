@@ -110,14 +110,7 @@ module.exports = (db) => {
       })
   });
 
-  // router.post('/maps/Mymaps/:pinId', (req, res) => {
-  //   const pinId = req
-  // });
-
-
-
-
-
+ 
 
 
   //WORKING test again
