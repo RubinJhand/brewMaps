@@ -16,7 +16,6 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/:mapId/pins', (req, res) => {
     const mapId = req.params.mapId;
-    console.log("MAPID IS HERE ", mapId);
     getPins(db, mapId)
     .then(data => {
       res.json(data.rows);

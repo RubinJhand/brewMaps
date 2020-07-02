@@ -1,4 +1,8 @@
 let maps = [];
+// var delMarker = function (markerPar) {
+//   markerPar.setMap(null);
+// };
+
 $(() => {
   console.log('ready');
   function initMap(id, data) {
@@ -18,7 +22,9 @@ $(() => {
           res.forEach((pin)=> {
             new google.maps.Marker({
               position: { lat: pin.latitude, lng: pin.longitude },
-              map: map,    
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,    
               title: pin.title
             })
           })
@@ -32,9 +38,16 @@ $(() => {
         new google.maps.Marker({    
           position: { lat, lng }, 
           map: map,
-          draggable: true,    
+          draggable: true,
+          animation: google.maps.Animation.DROP,
           title  
         });
+//         map.addListener(marker, "rightclick", function (point) {
+//           delMarker(marker)
+//         });
+// }
+
+        
       $.ajax({
         type: "POST",
         url: `/maps/${data}/pins`,
@@ -47,15 +60,16 @@ $(() => {
           console.log(res)
           }
         });
+        console.log("maps is here >>>>>> ", maps);
       });
       maps.push(map);
-
-    // marker.addListener('click', function(){
-    //   // infoWindow.open(map, marker);
-    //   alert("pin is clicked!");
-    // });
-}
-
+      
+      // marker.addListener('click', function(){
+        //   // infoWindow.open(map, marker);
+        //   alert("pin is clicked!");
+        // });
+      }
+      
    
   $( ".maps" ).each( (index, value) => {
     console.log("walue.data() is here >>>> ", $(value).data().id);
