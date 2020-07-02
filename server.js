@@ -64,13 +64,7 @@ app.use("/maps", mapsRoute(db));
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
 
-  //  PUT MAPS LOGIC HERE
-  // make sure you return an array of maps and send out thier namaes
-  // FOR THE MAKERS
-  // you will need to make another route (/maps/:id/markers)
-  // that you will have to use AJAX on the front end to populate the markers on each map
-  // console.log('\n\nworking: server.js app.get(/):>>\n\n')
-
+  //With logged in user, render their most liked maps
   getMostLikedMaps(db)
     .then(result => {
       if (req.session.userId) {
@@ -79,8 +73,14 @@ app.get("/", (req, res) => {
         console.log('\n\nserver.js / maps user:>>', maps[0].id)
         res.render("index", { maps, user });
       }
+      else {
+        const user = null;
+        let maps = result.rows;
+        res.render("index", { maps, user });
+      }
     })
     .catch(err => console.error(err.stack));
+
   // res.render("index", { maps, user });
   // let templateVars = { user: req.session.user };
   // console.log('\n\nworking? server.js file:>>', templateVars);
