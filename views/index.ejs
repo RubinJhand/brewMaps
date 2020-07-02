@@ -47,7 +47,7 @@
       <% maps.forEach((map) => { %>
       <h2><%= map.title %></h2>
       <div class="maps" id="map-<%=map.id%>" data-id="<%= map.id%>"
-        style=" margin: 0 auto 90px auto; width:900px; height:500px;"></div>
+        style=" margin: 0 auto 90px auto; width:900px; height:500px; z-index: -1;"></div>
       <% }) %>
     </div>
   </body>

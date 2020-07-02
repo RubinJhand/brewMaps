@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBInELMXXxLGbgdeTaFMDuUBQ6g7FSutng">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCl7GBGV_5irCkntN61MGG2ZcfK0mF3_Ac">
   </script>
   <script type="text/javascript" src="/scripts/maps.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
@@ -28,13 +28,14 @@
     <h1>My Maps</h1>
     <% maps.forEach((map) => { %>
     <h2><%= map.title %></h2>
-    <div class="maps" id="map-<%=map.id%>" data-id="<%=map.id%>" style=" margin: 0 auto; width:900px; height:500px; z-index: -1;"></div>
+    <div class="maps" id="map-<%=map.id%>" data-id="<%=map.id%>" style=" margin: 0 auto; width:900px; height:500px;">
+    </div>
     <!-- <div class="edit-delete"> -->
-      <!-- <button type="submit" class="edit-button">Edit</button> -->
-      <form method="POST" action="/myMaps/delete" class="id"></map>
-        <input type="hidden" name="mapId" value="<%= map.id %>">
-        <button type="submit" class="delete-button">Delete</button>
-      </form>
+    <!-- <button type="submit" class="edit-button">Edit</button> -->
+    <form method="POST" action="/myMaps/delete" class="id"></map>
+      <input type="hidden" name="mapId" value="<%= map.id %>">
+      <button type="submit" class="delete-button">Delete</button>
+    </form>
 
     <!-- </div> -->
     <% }) %>
