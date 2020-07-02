@@ -28,25 +28,27 @@
   <%- include('partials/_header') %>
 
   <body>
-
     <h1>Brew Maps</h1>
-    <h2>Check out some new maps!</h2>
-    <form class="form2">
-      <input type="text" class="form-control-2" placeholder="Enter Your Location">
-      <div class="button-holder">
-        <button type="submit" class="find-map">Find maps!</button>
-    </form>
-    <form method="GET" action="/create">
-      <button class="create-map" type="submit" class="btn btn-secondary">Create</button>
-    </form>
+    <div class="header-text-box">
+
+      <h2>Check out some new maps!</h2>
+      <form class="form2">
+        <input type="text" class="form-control-2" placeholder="Enter Your Location">
+        <div class="button-holder">
+          <button type="submit" class="find-map">Find maps!</button>
+      </form>
+      <form method="GET" action="/create">
+        <button class="create-map" type="submit" class="btn btn-secondary">Create</button>
+      </form>
+      </div>
+
     </div>
-
-
+    <div class="map-layout">
     <% maps.forEach((map) => { %>
     <h2><%= map.title %></h2>
-    <div class="maps" id="map-<%=map.id%>" data-id="<%= map.id%>" style="width:400px; height:250px;"></div>
+    <div class="maps" id="map-<%=map.id%>" data-id="<%= map.id%>" style="width:400px; height:250px; z-index: -1;"></div>
     <% }) %>
-
+  </div>
   </body>
 </main>
 
