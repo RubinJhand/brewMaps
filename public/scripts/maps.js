@@ -57,10 +57,11 @@ $(() => {
                 e.preventDefault();
                 const data = form.serialize()
                 $.post('/maps/pins/edit', data, cb => {
-                  console.log("callback worked");
 
+                  location.reload()
 
                 })
+
               })
             }, 500);
           })
@@ -85,7 +86,7 @@ $(() => {
       // console.log(e.latLng.lat(), e.latLng.lng())
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
-      const title = "new coffee shop is here";
+      const title = "Coffee shop name: ";
 
       //make ajax request here with vars above
       $.ajax({
@@ -108,6 +109,8 @@ $(() => {
             title,
             pinId
           });
+          location.reload()
+
           //making event listener to that marker,
           marker.addListener("dblclick", function (e) {
             // console.log('\n\nit here!', pinId)
