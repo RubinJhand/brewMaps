@@ -30,14 +30,10 @@
     <h2><%= map.title %></h2>
     <div class="maps" id="map-<%=map.id%>" data-id="<%=map.id%>" style=" margin: 0 auto; width:900px; height:500px;">
     </div>
-    <!-- <div class="edit-delete"> -->
-    <!-- <button type="submit" class="edit-button">Edit</button> -->
     <form method="POST" action="/myMaps/delete" class="id"></map>
       <input type="hidden" name="mapId" value="<%= map.id %>">
       <button type="submit" class="delete-button">Delete</button>
     </form>
-
-    <!-- </div> -->
     <% }) %>
   </body>
 </main>
