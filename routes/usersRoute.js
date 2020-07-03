@@ -1,13 +1,6 @@
 const express = require('express');
-const {
-  getUserId,
-  getMostLikedMaps,
-  getUserMaps,
-  getAllUserContributions,
-  notUserMaps,
-  addMap,
-  deleteMap,
-  addPin } = require('./api/usersApi');
+const { getUserId } = require('./api/usersApi');
+const { getMostLikedMaps, addMap, deleteMap } = require('./api/mapsApi');
 const { response } = require('express');
 const router = express.Router();
 
@@ -17,7 +10,7 @@ module.exports = (db) => {
   //'Create' map page
   router.get('/create', (req, res) => {
     const user = req.session.userId;
-    res.render('createMapForm.ejs', { user });
+    res.render('createMapForm', { user });
   })
   //Login 
   router.get('/login/:user', (req, res) => {
@@ -32,7 +25,7 @@ module.exports = (db) => {
       .then(data => {
         if (req.session.userId) {
           const maps = data.rows;
-          return res.render('index', { maps, user });
+          return res.redirect('/maps/myMaps');
         }
       });
   });

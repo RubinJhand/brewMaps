@@ -32,10 +32,12 @@ app.use(express.static('public'));
 
 const usersRoute = require('./routes/usersRoute');
 const mapsRoute = require('./routes/mapsRoute');
-const { getMostLikedMaps } = require('./routes/api/usersApi');
+const pinsRoute = require('./routes/pinsRoute');
+const { getMostLikedMaps } = require('./routes/api/mapsApi');
 
 app.use('/', usersRoute(db));
 app.use('/maps', mapsRoute(db));
+app.use('/maps', pinsRoute(db));
 
 // Home page
 app.get('/', (req, res) => {
