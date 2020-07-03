@@ -2,7 +2,7 @@ let maps = [];
 
 
 $(() => {
-  $(document).on('click', '.pin-popup', function(){
+  $(document).on('click', '.pin-popup', function () {
     console.log("popup for thing", $(this).data("id")) //then we can go find the query, make form
     $.ajax({
       type: "GET",
@@ -50,18 +50,19 @@ $(() => {
               </div>`
             })//add input field to capture text, change classes and html to make more interactive
             popUpBox.open(map, marker);
-            setTimeout(function() {
+            setTimeout(function () {
               const form = $('.pin-form');
               console.log('form is here >>> ', form);
-            form.submit(function(e) {
-              e.preventDefault();
-              const data = form.serialize()
-              $.post('/maps/pins/edit', data, cb => {
-                console.log("callback worked");
-                
-                
+              form.submit(function (e) {
+                e.preventDefault();
+                const data = form.serialize()
+                $.post('/maps/pins/edit', data, cb => {
+
+                  location.reload()
+
+                })
+
               })
-            })
             }, 500);
           })
           marker.addListener("dblclick", function (e) {
@@ -85,7 +86,7 @@ $(() => {
       // console.log(e.latLng.lat(), e.latLng.lng())
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
-      const title = "new coffee shop is here";
+      const title = "Coffee shop name: ";
 
       //make ajax request here with vars above
       $.ajax({
@@ -108,6 +109,8 @@ $(() => {
             title,
             pinId
           });
+          location.reload()
+
           //making event listener to that marker,
           marker.addListener("dblclick", function (e) {
             // console.log('\n\nit here!', pinId)

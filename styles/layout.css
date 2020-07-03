@@ -14,6 +14,9 @@ h1 {
 nav {
   display: flex;
   justify-content: space-between;
+  position: relative;
+  z-index: 200;
+  top: 0px;
   height: 180px;
 }
 
