@@ -2,7 +2,7 @@
 
 - brewMaps is a simple web app to allow users to view, create, edit, delete and save their favourite places, as pins, on a multiple maps.
 
-- Improved our skills with SQL, JavaScript, Google API integration, AJAX(AJAJ), jQuery.
+- Improved our skills with SQL, JavaScript, Google API integration, AJAX(AJAJ), jQuery, HTML, and CSS.
 
 - Users can view other user maps and places of interest.
 
