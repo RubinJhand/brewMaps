@@ -56,8 +56,8 @@ module.exports = (db) => {
       });
   });
   //Login when logged out; no information required
-  router.post('/login', (req, response) => {
-    response.redirect('/');
+  router.post('/login', (req, res) => {
+    res.redirect('/');
   });
   return router;
 };
