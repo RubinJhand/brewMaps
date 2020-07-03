@@ -14,32 +14,14 @@ const {
 const { response } = require('express');
 const router = express.Router();
 
-
 module.exports = (db) => {
-  router.get('/:mapId/pins', (req, res) => {
-    const mapId = req.params.mapId;
-    getPins(db, mapId)
+
+  router.get('/myMaps', (req, res) => {
+    const user = req.session.userId;
+    getUserMaps(db, user)
       .then(data => {
-        res.json(data.rows);
-      })
-  })
-
-  router.post('/:mapId/pins', (req, res) => {
-    addPin(db, req.body.title, "", "", req.body.lat, req.body.lng, req.session.userId, req.params.mapId)
-      .then((data) => {
-        // console.log(data.rows[0]);
-        const pin = data.rows[0];
-        res.json({ pin })
-      })
-  })
-
-  router.post(`/pins/:pinId/delete`, (req, res) => {
-    const pinId = req.params.pinId;
-    console.log("PIN ID IS HERE ", pinId);
-
-    deletePin(db, pinId)
-      .then(() => {
-        res.json({ success: true })
+        const maps = data.rows
+        return res.render('favMaps', { maps, user });
       })
   });
 
@@ -47,9 +29,31 @@ module.exports = (db) => {
     updatePin(db, req.body.pinId, req.body['shop-name'])
       .then(() => {
         res.json({ success: true })
-      })
-    // console.log("pins request thing here look here >>>>> ",req.body);
-  })
+      });
+  });
 
+  router.get('/:mapId/pins', (req, res) => {
+    const mapId = req.params.mapId;
+    getPins(db, mapId)
+      .then(data => {
+        res.json(data.rows);
+      });
+  });
+
+  router.post('/:mapId/pins', (req, res) => {
+    addPin(db, req.body.title, "", "", req.body.lat, req.body.lng, req.session.userId, req.params.mapId)
+      .then((data) => {
+        const pin = data.rows[0];
+        res.json({ pin })
+      });
+  });
+
+  router.post(`/pins/:pinId/delete`, (req, res) => {
+    const pinId = req.params.pinId;
+    deletePin(db, pinId)
+      .then(() => {
+        res.json({ success: true })
+      });
+  });
   return router;
-}
+};

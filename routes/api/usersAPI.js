@@ -1,4 +1,4 @@
-//intitial testing, add 'id' after 'db' if/when getting user by ID
+
 const getUserId = function (db, userId) {
   return db.query(`
     SELECT *
@@ -14,7 +14,6 @@ const getMostLikedMaps = function (db) {
     FROM maps
     ORDER BY num_like DESC
   `)
-  // .then(res => res.rows);
 };
 
 //Returns all the user's maps
@@ -25,7 +24,6 @@ const getUserMaps = function (db, userId) {
       WHERE user_id = $1
       ORDER BY id DESC
       `, [userId])
-  // .then(res => res.rows);
 };
 
 //Returns all the user favourites and created
@@ -37,7 +35,6 @@ const getAllUserContributions = function (db, userId) {
       ON maps.user_id = fav_maps.user_id
     WHERE fav_maps.user_id = $1
     `, [userId])
-  // .then(res => res.rows);
 };
 
 //Returns maps not created by or favourited by user CHANGE
@@ -51,7 +48,6 @@ const notUserMaps = function (db, userId) {
     AND NOT favourite_maps.user_id = $1
     ORDER BY num_like ASC
     `, [userId])
-  // .then(res => res.rows);
 };
 
 //Create map; add to database
@@ -66,7 +62,6 @@ const addMap = function (db, user_id, title) {
 
 //Create pin; add to database
 const addPin = function (db, title, description, image, latitude, longitude, user_id, map_id) {
-  // console.log(db, title, description, image, latitude, longitude, user_id, map_id);
   return db.query(`
     INSERT INTO pins (title, description, image, latitude, longitude, user_id, map_id)
     VALUES
@@ -74,8 +69,6 @@ const addPin = function (db, title, description, image, latitude, longitude, use
     RETURNING *
     `, [title, description, image, latitude, longitude, user_id, map_id]);
 };
-
-
 
 const getPins = function (db, mapId) {
   return db.query(`
@@ -93,7 +86,6 @@ const updatePin = function (db, pinId, title) {
     WHERE id = $2`,
     [title, pinId]);
 }
-
 
 const deletePin = function (db, pinId) {
   return db.query(`
@@ -117,7 +109,6 @@ const deleteMap = function (db, userId, map_id) {
       AND id = $2
     `, [userId, map_id]);
 };
-
 
 module.exports = {
   getUserId,

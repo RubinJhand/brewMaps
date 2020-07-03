@@ -1,5 +1,5 @@
 $(() => {
-  $('#logo').click(()=>{
+  $('#logo').click(() => {
     window.location = '/'
   })
 });
