@@ -1,6 +1,5 @@
 const express = require('express');
 const { addPin, getPins, deletePin, updatePin } = require('./api/pinsApi');
-const { response } = require('express');
 const router = express.Router();
 
 module.exports = (db) => {

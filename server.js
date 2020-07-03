@@ -2,7 +2,7 @@
 require('dotenv').config();
 // Web server config
 const PORT = process.env.PORT || 8080;
-const ENV = process.env.ENV || 'development';
+const KEY = process.env.KEY;
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session')
@@ -38,7 +38,6 @@ const { getMostLikedMaps } = require('./routes/api/mapsApi');
 app.use('/', usersRoute(db));
 app.use('/maps', mapsRoute(db));
 app.use('/maps', pinsRoute(db));
-
 // Home page
 app.get('/', (req, res) => {
   if (req.session.userId) {
@@ -46,7 +45,7 @@ app.get('/', (req, res) => {
       .then(result => {
         const user = req.session.userId;
         let maps = result.rows;
-        res.render('index', { maps, user });
+        res.render('index', { maps, user, KEY });
       });
   } else {
     getMostLikedMaps(db)
@@ -54,7 +53,7 @@ app.get('/', (req, res) => {
         const user = 3;
         req.session.userId = user;
         let maps = result.rows;
-        res.render('index', { maps, user });
+        res.render('index', { maps, user, KEY });
       })
       .catch(err => console.error(err.stack));
   }

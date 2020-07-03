@@ -1,7 +1,6 @@
+const KEY = process.env.KEY;
 const express = require('express');
-const { getUserId } = require('./api/usersApi');
 const { getMostLikedMaps, addMap, deleteMap } = require('./api/mapsApi');
-const { response } = require('express');
 const router = express.Router();
 
 
@@ -10,7 +9,7 @@ module.exports = (db) => {
   //'Create' map page
   router.get('/create', (req, res) => {
     const user = req.session.userId;
-    res.render('createMapForm', { user });
+    res.render('createMapForm', { user, KEY });
   })
   //Login 
   router.get('/login/:user', (req, res) => {
@@ -45,7 +44,7 @@ module.exports = (db) => {
       .then(result => {
         const user = false;
         let maps = result.rows;
-        res.render('index', { maps, user });
+        res.render('index', { maps, user, KEY });
       });
   });
   //Login when logged out; no information required
