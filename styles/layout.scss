@@ -53,6 +53,9 @@ h2 {
   font-family: $Playfair-Display;
 }
 
+h4 {
+  font-family: $Playfair-Display;
+}
 nav {
   display: flex;
   justify-content: space-between;
@@ -133,8 +136,6 @@ form {
 .btn-secondary {
   display: flex;
   justify-content: space-evenly;
-  // width: 25%;
-  // height: calc(1.5em + .75rem + 2px);
   border-radius: 20px;
   font-weight: bolder;
   margin: 0 0.5rem;
@@ -148,26 +149,30 @@ form {
   border-radius: 1em;
   color: black;
   background-color: ivory;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.find-map {
-  border-radius: 1em;
-  border: none;
-  width: 8em;
-  background-color: #cc9065;
-  color: white;
-  font-family: $nanum-gothic;
-  margin: 0 30px;
-}
+// .find-map {
+//   border-radius: 1em;
+//   border: none;
+//   width: 8em;
+//   background-color: #cc9065;
+//   color: white;
+//   font-family: $nanum-gothic;
+//   margin: 0 30px;
+// }
 
 .create-map {
   background-color: #cc9065;
-  border-radius: 1em;
+  border-radius: 5em;
   border: none;
   width: 8em;
   color: $primary-color;
-  font-family: $nanum-gothic;
+  font-family: $Playfair-Display;
   margin: 0 30px;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .button-holder {
@@ -175,16 +180,6 @@ form {
   margin-top: 10px;
 }
 
-.edit-button {
-  background-color: #cc9065;
-  border-radius: 1em;
-  border: none;
-  width: 6em;
-  color: $primary-color;
-  font-family: $nanum-gothic;
-  margin: auto;
-  margin-top: 0.5em;
-}
 .delete-button {
   background-color: #cc9065;
   border-radius: 1em;
@@ -193,6 +188,8 @@ form {
   color: $primary-color;
   font-family: $nanum-gothic;
   margin: 1em;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .form-group2 {

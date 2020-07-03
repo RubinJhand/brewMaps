@@ -86,7 +86,7 @@ $(() => {
       // console.log(e.latLng.lat(), e.latLng.lng())
       const lat = e.latLng.lat();
       const lng = e.latLng.lng();
-      const title = "Coffee shop name: ";
+      const title = "Pin name: ";
 
       //make ajax request here with vars above
       $.ajax({

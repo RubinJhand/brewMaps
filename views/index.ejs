@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <!-- Google API -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAlTpBtmxfLhIKlYxaL5nz09USVSchQ48o">
   </script>
 
   <!-- Internal JS -->
@@ -31,14 +31,15 @@
     <div class="header-text-box">
       <h1>Brew Maps</h1>
 
-      <h2>Check out some new maps!</h2>
-      <form class="form2">
+      <h2>Check out your pal's map!</h2>
+      <h4>or</h4>
+      <!-- <form class="form2">
         <input type="text" class="form-control-2" placeholder="Enter Your Location">
         <div class="button-holder">
           <button type="submit" class="find-map">Find maps!</button>
-      </form>
+      </form> -->
       <form method="GET" action="/create">
-        <button class="create-map" type="submit" class="btn btn-secondary">Create</button>
+        <button class="create-map" type="submit" class="btn btn-secondary"><b> Create New Map</b></button>
       </form>
     </div>
 
@@ -47,7 +48,7 @@
       <% maps.forEach((map) => { %>
       <h2><%= map.title %></h2>
       <div class="maps" id="map-<%=map.id%>" data-id="<%= map.id%>"
-        style=" margin: 0 auto 90px auto; width:900px; height:500px; z-index: -1;"></div>
+        style=" margin: 0 auto 90px auto; width:900px; height:500px; "></div>
       <% }) %>
     </div>
   </body>
